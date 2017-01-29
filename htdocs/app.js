@@ -20,7 +20,7 @@ let app           = new TelegramBot(Config.bot_token);
 // Объявляем переменные
 var a = 1;
 var b = 2;
-var schedule = { monday :[{time:'10:00', subject:'Математика'},{time:'10:50', subject:'Музыка'}]
+var schedule = { monday :[{time:'10:00', subject:'Математика'},{time:'10:50', subject:'Музыка'}],
                  tuesday:[]
                };
 
