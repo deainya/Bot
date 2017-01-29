@@ -1,8 +1,8 @@
 'use strict'; //ECMAScript standard
 
-const Telegraf = require('telegraf'); // telegraf lib
-let Config     = require('./config'); // get config
-let app        = new Telegraf(Config.bot_token);
+const TelegramBot = require('telegraf'); // telegraf library
+let Config        = require('./config'); // get config
+let app           = new TelegramBot(Config.bot_token);
 
 /*app.getMe((res) => {
   console.log(res);
@@ -19,9 +19,10 @@ app.command('help', (ctx) => {
   ctx.reply('Помоги себе сам, будь умничкой!');
 });
 
-//app.hears('Привет', (ctx) => ctx.reply('Привет :)'));
+app.hears('Привет', (ctx) => ctx.reply('Привет :)'));
 
 app.on('sticker', (ctx) => ctx.reply('👍'));
+app.on('photo', (ctx) => ctx.reply('👍 like :)'));
 
 app.startPolling();
 
