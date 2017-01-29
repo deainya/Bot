@@ -4,9 +4,10 @@ const Telegraf = require('telegraf'); // telegraf lib
 let Config     = require('./config'); // get config
 let app        = new Telegraf(Config.bot_token);
 
-app.getMe((res) => {
+/*app.getMe((res) => {
   console.log(res);
 });
+ */
 
 app.command('start', (ctx) => {
   console.log('start', ctx.from);
