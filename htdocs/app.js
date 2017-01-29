@@ -42,7 +42,11 @@ app.hears('1+2?', (ctx) => ctx.reply(a+b));
 // ... работаем с расписанием...
 app.hears('Какое расписание на понедельник?', (ctx) => {
   ctx.reply('Расписание на понедельник:');
-  ctx.reply(schedule.monday);
+  ctx.reply(schedule.monday); //ой, не совсем то, что хотели...
+
+  ctx.reply('Первый предмет в понедельник:');
+  ctx.reply(schedule.monday[0].time + ' ' + schedule.monday[0].subject);
+
 });
 
 // ...тут напишет Алиса
