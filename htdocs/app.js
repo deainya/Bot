@@ -90,7 +90,7 @@ app.on('sticker', (ctx) => ctx.reply('👍'));
 app.on('photo', (ctx) => ctx.reply('👍 like :)'));
 
 app.on('text', (ctx) => {
-  console.log(ctx.message.text + ' хммм...');
+  console.log(ctx.message);
   ctx.reply(ctx.message.text + ' хммм...');
 });
 
