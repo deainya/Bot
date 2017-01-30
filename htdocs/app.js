@@ -80,7 +80,7 @@ app.hears('Какое расписание на понедельник?', (ctx) 
   ctx.reply('Расписание на понедельник:');
   ctx.reply(schedule.monday); //ой, не совсем то, что хотели...
 
-  ctx.reply ( 'Первый предмет в понедельник:' + '\n'
+  ctx.reply ( 'Первый предмет в понедельник:' + '\n' +
               schedule.monday[0].time + ' ' + schedule.monday[0].subject
             );
 });
