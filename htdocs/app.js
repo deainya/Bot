@@ -80,7 +80,7 @@ app.hears('Какое расписание на понедельник?', (ctx) 
   ctx.reply('Расписание на понедельник:');
   ctx.reply(schedule.monday); //ой, не совсем то, что хотели...
 
-  ctx.reply('Первый предмет в понедельник\n:');
+  ctx.reply('Первый предмет в понедельник\r\n:');
   ctx.reply(schedule.monday[0].time + ' ' + schedule.monday[0].subject);
 
 });
@@ -89,8 +89,9 @@ app.hears('Какое расписание на понедельник?', (ctx) 
 app.on('sticker', (ctx) => ctx.reply('👍'));
 app.on('photo', (ctx) => ctx.reply('👍 like :)'));
 
-app.on('message', (ctx) => {
-  ctx.reply(ctx.message.text.toLowerCase());
+app.on('text', (ctx) => {
+  console.log(ctx.message.toLowerCase());
+  ctx.reply(ctx.message.toLowerCase());
 });
 
 // Запускаем приложение бота
