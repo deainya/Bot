@@ -94,7 +94,7 @@ app.on('text', (ctx) => {
   var txt = ctx.message.text.toLowerCase();
   console.log(txt);
 
-  if (txt.test(mon))
+  if (mon.test(txt))
   {
     ctx.reply("Пробуем тест...");
   }
