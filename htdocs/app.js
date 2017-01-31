@@ -91,7 +91,7 @@ app.on('photo', (ctx) => ctx.reply('👍 like :)'));
 
 app.on('text', (ctx) => {
   console.log(ctx.message);
-  ctx.reply(ctx.message.text + ' хммм...');
+  ctx.reply(ctx.message.text + " Хммм...".toLowerCase());
 });
 
 app.on('message', (ctx) => {
