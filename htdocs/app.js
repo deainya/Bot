@@ -90,8 +90,15 @@ app.on('sticker', (ctx) => ctx.reply('👍'));
 app.on('photo', (ctx) => ctx.reply('👍 like :)'));
 
 app.on('text', (ctx) => {
-  console.log(ctx.message);
-  ctx.reply(ctx.message.text + " Хммм...".toLowerCase());
+  var mon = /(понедельник)/;
+  var txt = ctx.message.text.toLowerCase();
+  console.log(txt);
+
+  if (txt.test(mon))
+  {
+    ctx.reply("Пробуем тест...");
+  }
+
 });
 
 app.on('message', (ctx) => {
