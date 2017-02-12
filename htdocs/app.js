@@ -114,7 +114,7 @@ app.on('text', (ctx) => {
   if (mon.test(txt))
   {
     ctx.reply( 'Расписание на понедельник:' + '\n' +
-                JSON.stringify(schedule.monday[0]) );
+                JSON.stringify(schedule.monday) );
   }
 
 //  var schedule = { monday :   [ {time:' 8:00', subject:'Музыка'},
