@@ -92,8 +92,7 @@ app.hears('Какое расписание на понедельник?', (ctx) 
   // ctx.reply('Расписание на понедельник:');
   // ctx.reply(schedule.monday); //ой, не совсем то, что хотели...
 
-  ctx.reply ( 'Первый предмет в понедельник:' + '\n' +
-              schedule.monday[0].time + ' ' + schedule.monday[0].subject
+  ctx.reply (
             );
 });
 
@@ -105,17 +104,24 @@ app.on('photo', (ctx) => ctx.reply('👍 like :)'));
 app.on('text', (ctx) => {
 //  console.log(ctx);
 //  console.log('Идентификатор обновления (update_id): ' + ctx.update.update_id);
-  console.log('Текст пользователя: ' + ctx.update.message.text);
-  ctx.reply('Привет мир. Алиса молодец');
+//  console.log('Текст пользователя: ' + ctx.update.message.text);
+//  ctx.reply('Привет мир. Алиса молодец');
 
-  /*var mon = /(понедельник)/;
+  var mon = /(понедельник)/;
   var txt = ctx.message.text.toLowerCase();
   console.log(txt);
 
   if (mon.test(txt))
   {
-    ctx.reply("Пробуем тест...");
-  }*/
+    ctx.reply( 'Расписание на понедельник:' + '\n' +
+                schedule.monday[0] );
+  }
+
+//  var schedule = { monday :   [ {time:' 8:00', subject:'Музыка'},
+//                                {time:' 8:45', subject:'Литература'},
+//                                {time:' 9:40', subject:'Русский язык'},
+//                                {time:'10:35', subject:'Русский язык'},
+//                                {time:'11:30', subject:'Обществование'} ],
 
 });
 
