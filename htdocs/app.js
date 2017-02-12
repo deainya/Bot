@@ -103,10 +103,10 @@ app.on('photo', (ctx) => ctx.reply('👍 like :)'));
 
 // Алисины пробы пера - т.е. реакция бота на текстовое сообщение
 app.on('text', (ctx) => {
-  console.log(ctx);
-  console.log('Идентификатор обновления (update_id): ' + ctx.update.update_id);
-
-  ctx.reply('Привет мир');
+//  console.log(ctx);
+//  console.log('Идентификатор обновления (update_id): ' + ctx.update.update_id);
+  console.log('Текст пользователя: ' + ctx.update.message.text);
+  ctx.reply('Привет мир. Алиса молодец');
 
   /*var mon = /(понедельник)/;
   var txt = ctx.message.text.toLowerCase();
