@@ -1,11 +1,11 @@
-'use strict'; //ECMAScript standard
+//'use strict'; //ECMAScript standard
 
 // Подключаем библиотеки и внешние скрипты
 const TelegramBot = require('telegraf'); // telegraf library
-let Config        = require('./config'); // get config
+var Config        = require('./config'); // get config
 
 // Создаем объект приложения бота телеграмм
-let app           = new TelegramBot(Config.bot_token);
+var app           = new TelegramBot(Config.bot_token);
 
 /*app.getMe((res) => {
   console.log(res);
@@ -72,6 +72,18 @@ app.command('help', (ctx) => {
 });
 
 // Задаём реакцию бота на текстовые сообщения
+/*
+telegraf.js:
+
+module.exports(id) = {
+  identity: id,
+  hears(){
+    ...
+    return ...
+  },
+  ...
+}
+ */
 app.hears('Привет', (ctx) => ctx.reply('Привет :)'));
 app.hears('1+2?', (ctx) => ctx.reply(a+b));
 
@@ -89,20 +101,26 @@ app.hears('Какое расписание на понедельник?', (ctx) 
 app.on('sticker', (ctx) => ctx.reply('👍'));
 app.on('photo', (ctx) => ctx.reply('👍 like :)'));
 
+// Алисины пробы пера - т.е. реакция бота на текстовое сообщение
 app.on('text', (ctx) => {
-  var mon = /(понедельник)/;
+  console.log(ctx);
+
+  ctx.reply('Привет мир');
+
+  /*var mon = /(понедельник)/;
   var txt = ctx.message.text.toLowerCase();
   console.log(txt);
 
   if (mon.test(txt))
   {
     ctx.reply("Пробуем тест...");
-  }
+  }*/
 
 });
 
 app.on('message', (ctx) => {
-  console.log(ctx.message);
+  console.log(ctx);
+
   ctx.reply(ctx.message);
 });
 

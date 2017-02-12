@@ -6,5 +6,5 @@
  */
 module.exports = {
   //port: process.env.port || 5000,
-  bot_token: process.env.BOT_TOKEN || '207238769:AAGUdhWNUXeoTHriijyS1YtqsQN5WC2JmAk'
+  bot_token: '207238769:AAGUdhWNUXeoTHriijyS1YtqsQN5WC2JmAk' //process.env.BOT_TOKEN ||
 }
