@@ -155,7 +155,13 @@ app.on('text', function(ctx) {
   console.log(txt); // Выводим в консоль свойство "text" (уже маленькие буквы) из объекта контекста "ctx"
 
   if (mon.test(txt))
-  {
+  {  var sch = 'Расписание на понедельник:' + '\n';
+    for ( i = 0; i < schedule.monday.length; i++ ) {
+      sch = sch + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
+    }
+    ctx.reply( sch ); 
+
+  }
     // Ниже выводим ответ бота на полученный контекст "ctx" от пользователя
     //ctx.reply( 'Расписание на понедельник:' + '\n' +
     //            JSON.stringify(schedule.monday) );//[0].time+' '+schedule.monday[0].subject) );
@@ -178,6 +184,39 @@ app.on('text', function(ctx) {
 });
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //  console.log(ctx);//  console.log('Идентификатор обновления (update_id): ' + ctx.update.update_id);//  console.log('Текст пользователя: ' + ctx.update.message.text);//  ctx.reply('Привет мир. Алиса молодец');
+
+// полигон-справочник
+//var aaa = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+//aaa[0]+aaa[1]+aaa[2]+... // это тупик, если значений в массиве миллион
+//if (aaa.length == 2) {aaa[0]+aaa[1]} else if (aaa.length == 3) {aaa[0]+aaa[1]+aaa[2]} else {хз}
+/*var sum = 0;
+var index = 0;
+sum = sum + aaa[index]; //sum = 1
+index = 1;
+sum = sum + aaa[index]; //sum = 3
+index = 2;
+sum = sum + aaa[index]; //sum = 6
+
+var sum = 0;
+for ( index = 0; index <= 4; index=index+1 ) { sum = sum + aaa[index]; }
+
+шаг 1: index = 0 <= 4: sum = sum + aaa[index]; // sum = 1
+шаг 2: index = 1 <= 4: sum = sum + aaa[index]; // sum = 3
+шаг 3: index = 2 <= 4: sum = sum + aaa[index]; // sum = 6
+шаг 4: index = 3 <= 4: sum = sum + aaa[index]; // sum = 10
+шаг 5: index = 4 <= 4: sum = sum + aaa[index]; // sum = 15
+шаг 6: index = 5 <= 4: X
+
+sum = ? => 15!
+
+var sum = 0;
+for ( index = 0; index <= 4; index=index+2 ) { sum = sum + aaa[index]; }
+sum ? => 9!
+
+var sum = 0;
+for ( index = 0; index >= 0; index=index++ ) { sum = sum + 1; }
+
+*/
 
 // Запускаем приложение бота
 app.startPolling();
