@@ -164,7 +164,7 @@ app.on('text', function(ctx) {
   {
     // Ниже выводим ответ бота на полученный контекст "ctx" от пользователя
     ctx.reply( 'Расписание на понедельник:' + '\n' +
-                JSON.stringify(schedule.monday);//[0].time+' '+schedule.monday[0].subject);
+                JSON.stringify(schedule.monday) );//[0].time+' '+schedule.monday[0].subject) );
   } else {
     ctx.reply( 'Не понял вас, мастер Люк' ); //Скайвокер
   }
