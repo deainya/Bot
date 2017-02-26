@@ -151,32 +151,33 @@ tuesday:   [ {time:' 8:00', subject:'Технология'},
 app.on('text', function(ctx) {
   var mon = /(понедельник|пн.)/;
   var tue = /(вторник|вт.)/;
+  var wed = /(среда|ср.)/;
   var txt = ctx.message.text.toLowerCase(); // Заглавные буквы свойства "text" из объекта контекста "ctx" делает маленткими
   console.log(txt); // Выводим в консоль свойство "text" (уже маленькие буквы) из объекта контекста "ctx"
 
-  if (mon.test(txt))
-  {  var sch = 'Расписание на понедельник:' + '\n';
-    for ( i = 0; i < schedule.monday.length; i++ ) {
-      sch = sch + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
-    }
-    ctx.reply( sch ); 
-
-  }
+  if (mon.test(txt)) {
     // Ниже выводим ответ бота на полученный контекст "ctx" от пользователя
     //ctx.reply( 'Расписание на понедельник:' + '\n' +
     //            JSON.stringify(schedule.monday) );//[0].time+' '+schedule.monday[0].subject) );
     // Теперь Алиса сделает цикл для понедельника
-
-
+    var sch = 'Расписание на понедельник:' + '\n';
+    for ( i = 0; i < schedule.monday.length; i++ ) {
+      sch = sch + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
+    }
+    ctx.reply( sch );
   } else if (tue.test(txt)) {
-
     // Тут папа сделал цикл
     var sch = 'Расписание на вторник:' + '\n'; // Задали начальное значение переменной sch: "Расписание на вторник:" (+ символ переноса строки)
     for ( i = 0; i < schedule.tuesday.length; i++ ) {
       sch = sch + schedule.tuesday[i].time + ' ' + schedule.tuesday[i].subject + '\n';
     }
     ctx.reply( sch ); // Это ответ пользователю
-
+  } else if (wed.test(txt)) {
+    var sch = 'Расписание на среду:' + '\n';
+    for ( i = 0; i < schedule.wednesday.length; i++ ) {
+      sch = sch + schedule.wednesday[i].time + ' ' + schedule.wednesday[i].subject + '\n';
+    }
+    ctx.reply( sch );
   } else {
     ctx.reply( 'Не понял вас, мастер Люк' ); //Скайвокер
   }
