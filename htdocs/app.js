@@ -148,6 +148,14 @@ app.hears('1+2?', (ctx) => ctx.reply(s(a, b)));
 //                                {time:'10:35', subject:'Русский язык'},
 //                                {time:'11:30', subject:'Обществование'} ],
 /*
+tuesday:   [ {time:' 8:00', subject:'Технология'},
+             {time:' 8:45', subject:'Технология'},
+             {time:' 9:40', subject:'Иностранный язык'},
+             {time:'10:35', subject:'Иностранный язык'},
+             {time:'11:30', subject:'Русский язык'},
+             {time:'12:20', subject:'Физкультура'},
+             {time:'13:10', subject:'Литература'} ],*/
+/*
 4. Покажи (всё) расписане (на неделю).
 4a. Какое расписание на неделю?
 5. Есть ли (у меня) [предмет] [сегодня]?
@@ -157,6 +165,7 @@ app.hears('1+2?', (ctx) => ctx.reply(s(a, b)));
 */
 app.on('text', function(ctx) {
   var mon = /(понедельник|пн.)/;
+  var tue = /(вторник|вт.)/;
   var txt = ctx.message.text.toLowerCase(); // Заглавные буквы свойства "text" из объекта контекста "ctx" делает маленткими
   console.log(txt); // Выводим в консоль свойство "text" (уже маленькие буквы) из объекта контекста "ctx"
 
@@ -165,6 +174,15 @@ app.on('text', function(ctx) {
     // Ниже выводим ответ бота на полученный контекст "ctx" от пользователя
     ctx.reply( 'Расписание на понедельник:' + '\n' +
                 JSON.stringify(schedule.monday) );//[0].time+' '+schedule.monday[0].subject) );
+  } else if (tue.test(txt)) {
+
+    // Тут папа сделал цикл
+    var sch = '';
+    for (var i = 0; i < schedule.tuesday.length-1; i++) {
+      sch = sch + schedule.tuesday[i].time + ' ' + schedule.tuesday[i].subject + '\n';
+    }
+    ctx.reply( sch );
+
   } else {
     ctx.reply( 'Не понял вас, мастер Люк' ); //Скайвокер
   }
