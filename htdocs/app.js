@@ -177,8 +177,8 @@ app.on('text', function(ctx) {
   } else if (tue.test(txt)) {
 
     // Тут папа сделал цикл
-    var sch = '';
-    for (var i = 0; i < schedule.tuesday.length-1; i++) {
+    var sch = 'Расписание на вторник:' + '\n';
+    for (var i = 0; i < schedule.tuesday.length; i++) {
       sch = sch + schedule.tuesday[i].time + ' ' + schedule.tuesday[i].subject + '\n';
     }
     ctx.reply( sch );
