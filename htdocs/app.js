@@ -103,7 +103,7 @@ var getScheduleDay = function(day_of_the_week) {
   switch(day_of_the_week){
     case "monday":    var s = "понедельник:\n";
                       for ( var i = 0; i < schedule.monday.length; i++ ) {
-                        s = s + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
+                        s = s + schedule[day_of_the_week][i].time + ' ' + schedule[day_of_the_week][i].subject + '\n';
                       }
                       return s;
     case "tuesday":   var s = "вторник:\n ";
