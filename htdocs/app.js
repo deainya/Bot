@@ -120,13 +120,13 @@ var getScheduleDay = function(day_of_the_week) {
 app.on('text', function(ctx) {
   var txt = ctx.message.text.toLowerCase(); // Заглавные буквы свойства "text" из объекта контекста "ctx" делает маленткими
 
-  var mon = /(понедельник|пн.|пн |пн$)/.test(txt);
-  var tue = /(вторник|вт.|вт |вт$)/.test(txt);
-  var wed = /(среда|ср.|ср |ср$)/.test(txt);
-  var thu = /(четверг|чт.|чт |чт$)/.test(txt);
-  var fri = /(пятница|пт.|пт |пт$)/.test(txt);
-  var sat = /(суббота|сб.|сб |сб$)/.test(txt);
-  var sun = /(воскресенье|вс.|вс |вс$)/.test(txt);
+  var mon = /(понедельник|пн$)/.test(txt);
+  var tue =     /(вторник|вт$)/.test(txt);
+  var wed =       /(среда|ср$)/.test(txt);
+  var thu =     /(четверг|чт$)/.test(txt);
+  var fri =     /(пятница|пт$)/.test(txt);
+  var sat =     /(суббота|сб$)/.test(txt);
+  var sun = /(воскресенье|вс$)/.test(txt);
   var day = /(день|сегодня)/.test(txt);
   var week = /(неделю)/.test(txt);
 
