@@ -103,9 +103,11 @@ var getScheduleDay = function(day_of_the_week) {
   var s = "";
   if (tdotw(day_of_the_week)) {
     s = tdotw(day_of_the_week) + ":\n";
-    for ( var i = 0; i < schedule[day_of_the_week].length; i++ ) {
-      s = s + schedule[day_of_the_week][i].time + ' ' + schedule[day_of_the_week][i].subject + '\n';
-    }
+    if (schedule[day_of_the_week].length > 0) {
+      for ( var i = 0; i < schedule[day_of_the_week].length; i++ ) {
+        s = s + schedule[day_of_the_week][i].time + ' ' + schedule[day_of_the_week][i].subject + '\n';
+      }
+    } else { s = s + "Без уроков. Отдыхай, дружок! :)"; }
   }
   return s;
   /*switch(day_of_the_week){
