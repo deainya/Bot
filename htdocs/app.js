@@ -129,7 +129,7 @@ app.on('text', function(ctx) {
     if (fri.test(txt)) { days.push("friday"); }
     if (sat.test(txt)) { days.push("saturday"); }
     if (sun.test(txt)) { days.push("sunday"); }
-    var Q1 = /расписание на|какие (?=предметы|уроки) в/;
+    var Q1 = /расписание на|(какие (?=предметы|уроки) (?=в))/;
 
     if (Q1.test(txt)) {
       var sch = "Вот расписание на\n";
