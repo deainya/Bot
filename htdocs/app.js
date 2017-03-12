@@ -84,6 +84,20 @@ var schedule = { monday :   [ {time:' 8:00', subject:'Музыка'},
                  sunday:    []
                };
 
+// Translate Day Of The Week (tdotw)
+var tdotw = function(day_of_the_week) {
+  switch(day_of_the_week){
+    case "monday": return "понедельник"; break;
+    case "tuesday": return "вторник"; break;
+    case "wednesday": return "среда"; break;
+    case "thursday": return "четверг"; break;
+    case "friday": return "пятница"; break;
+    case "saturday": return "суббота"; break;
+    case "sunday": return "воскресенье"; break;
+    default: return "";
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // Задаём реакцию бота на текстовые сообщения
 ////////////////////////////////////////////////////////////////////////////////
@@ -95,9 +109,50 @@ app.on('text', function(ctx) {
   var fri = /(пятница|пт.)/;
   var sat = /(суббота|сб.)/;
   var sun = /(воскресенье|вс.)/;
+  var cur = /(день|сегодня)/;
+  var wee = /(неделю)/;
   var txt = ctx.message.text.toLowerCase(); // Заглавные буквы свойства "text" из объекта контекста "ctx" делает маленткими
 
   console.log(txt); // Выводим в консоль значение переменной txt, которая содержит значение свойства "text" (маленькие буквы) из объекта контекста "ctx"
+
+  // Добавлено. Что происходит в блоке ниже?
+  if (wee.test(txt)) {
+    ;
+  } else if (cur.test(txt)) {
+    ;
+  } else {
+    var days = [];
+    if (mon.test(txt)) { days.push("monday"); }
+    if (tue.test(txt)) { days.push("tuesday"); }
+    if (wed.test(txt)) { days.push("wednesday"); }
+    if (thu.test(txt)) { days.push("thursday"); }
+    if (fri.test(txt)) { days.push("friday"); }
+    if (sat.test(txt)) { days.push("saturday"); }
+    if (sun.test(txt)) { days.push("sunday"); }
+    var Q1 = /расписание на|какие (?=предметы|уроки) в/;
+
+    if (Q1.test(txt)) {
+      var sch = "Вот расписание на\n";
+      // Основной Цикл
+      for ( i = 0; i < days.length-1; i++ ) {
+        // Самописная функция tdotw
+        sch = sch + tdotw(days[i]) + ":\n";
+        // Цикл в цикле
+        for ( j = 0; j < schedule.monday.length; j++ ) {
+          sch = sch + schedule.monday[j].time + ' ' + schedule.monday[j].subject + '\n';
+        }
+      }
+      sch = sch + tdotw(days[days.length]) + "...\n";
+    }
+  }
+
+/*
+Вопросы на которые будет отвечать бот:
+1. Какое расписание на [день/сегодня]?
+1a. Покажи расписание на [день/сегодня].
+1b. Какие предметы/уроки [сегодня]?
+1c. Какие предметы/уроки в [день]?
+*/
 
   // Далее готовим ответ на полученный контекст "ctx" от пользователя
   // Ранее было так: ctx.reply( 'Расписание на понедельник:'+'\n'+JSON.stringify(schedule.monday) ); //[0].time+' '+schedule.monday[0].subject) );
@@ -145,7 +200,7 @@ app.on('text', function(ctx) {
     ctx.reply( sch );
   } else if (sun.test(txt)) {
     // Воскресенье
-    var sch = 'Расписание на воскресенье:' + '\n' + 'Сегодня отдыхаем.';
+    var sch = 'В воскресенье отдых!';
 
     ctx.reply( sch );
   } else {
