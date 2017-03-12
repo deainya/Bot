@@ -8,6 +8,8 @@
  1a. Покажи расписание на [день/сегодня].
  1b. Какие предметы/уроки [сегодня]?
  1c. Какие предметы/уроки в [день]?
+ 1d. Покажи (всё) расписане (на неделю).
+ 1e. Какое расписание на неделю?
 
  2. Во сколько начинаются/заканчиваются уроки [сегодня]?
  2a. Во сколько начинаются/заканчиваются уроки в [день]?
@@ -15,19 +17,15 @@
  3. Сколько/какое количество предметов/уроков [сегодня]?
  3a. Сколько/какое количество предметов/уроков в [день]?
 
- 4. Покажи (всё) расписане (на неделю).
- 4a. Какое расписание на неделю?
+ 4. Есть ли (у меня) [предмет] [сегодня]?
+ 4a. Есть ли (у меня) [предмет] в [день]?
 
- 5. Есть ли (у меня) [предмет] [сегодня]?
- 5a. Есть ли (у меня) [предмет] в [день]?
+ 5. Во сколько (у меня) [предмет] [сегдоня]?
+ 5a. Во сколько (у меня) [предмет] в [день]?
 
- 6. Во сколько (у меня) [предмет] [сегдоня]?
- 6a. Во сколько (у меня) [предмет] в [день]?
+ 6. Изменения в расписании...
 
- 7. Изменения в расписании...
-
- 8. Как быть если указано несколько дней...
-
+ 7. Как быть если указано несколько дней...
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -86,31 +84,23 @@ var schedule = { monday :   [ {time:' 8:00', subject:'Музыка'},
 
 // Translate Day Of The Week (tdotw)
 var tdotw = function(day_of_the_week) {
-  switch(day_of_the_week){
-    case "monday": return "понедельник"; //break;
-    case "tuesday": return "вторник"; //break;
-    case "wednesday": return "среда"; //break;
-    case "thursday": return "четверг"; //break;
-    case "friday": return "пятница"; //break;
-    case "saturday": return "суббота"; //break;
-    case "sunday": return "воскресенье"; //break;
+  var days = {"monday":"понедельник", "tuesday":"вторник", "wednesday":"среда", "thursday":"четверг", "friday":"пятница", "saturday":"суббота", "sunday":"воскресенье"};
+  return days[day_of_the_week];
+  /*switch (day_of_the_week){
+    case "monday": return "понедельник";
+    case "tuesday": return "вторник";
+    case "wednesday": return "среда";
+    case "thursday": return "четверг";
+    case "friday": return "пятница";
+    case "saturday": return "суббота";
+    case "sunday": return "воскресенье";
     default: return "";
-  }
+  }*/
 }
 
 // "взять день расписания"
 var getScheduleDay = function(day_of_the_week) {
-  var s = "";
-  if (tdotw(day_of_the_week)) {
-    s = tdotw(day_of_the_week) + ":\n";
-    if (schedule[day_of_the_week].length > 0) {
-      for ( var i = 0; i < schedule[day_of_the_week].length; i++ ) {
-        s = s + schedule[day_of_the_week][i].time + ' ' + schedule[day_of_the_week][i].subject + '\n';
-      }
-    } else { s = s + "Без уроков. Отдыхай, дружок! :)"; }
-  }
-  return s;
-  /*switch(day_of_the_week){
+  switch(day_of_the_week){
     case "monday":    var s = "понедельник:\n";
                       for ( var i = 0; i < schedule.monday.length; i++ ) {
                         s = s + schedule[day_of_the_week][i].time + ' ' + schedule[day_of_the_week][i].subject + '\n';
@@ -143,13 +133,15 @@ var getScheduleDay = function(day_of_the_week) {
                       return s;
     case "sunday":    return "воскресенье\n Отдыхай дружок";
     default:          return "";
-  }*/
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Задаём реакцию бота на текстовые сообщения
 ////////////////////////////////////////////////////////////////////////////////
 app.on('text', function(ctx) {
+  var txt = ctx.message.text.toLowerCase(); // Заглавные буквы свойства "text" из объекта контекста "ctx" делает маленткими
+
   var mon = /(понедельник|пн.)/;
   var tue = /(вторник|вт.)/;
   var wed = /(среда|ср.)/;
@@ -157,40 +149,55 @@ app.on('text', function(ctx) {
   var fri = /(пятница|пт.)/;
   var sat = /(суббота|сб.)/;
   var sun = /(воскресенье|вс.)/;
-  var cur = /(день|сегодня)/;
-  var wee = /(неделю)/;
-  var txt = ctx.message.text.toLowerCase(); // Заглавные буквы свойства "text" из объекта контекста "ctx" делает маленткими
+  var re_day = /(день|сегодня)/;
+  var re_wee = /(неделю)/;
+
+  var today = new Date(); // Сегодняшняя дата
+  var days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+  var day = days[today.getDay()]; // Сегодняшний день недели
+  // Переносим Вс. в хвост массива
+  days.splice(days.indexOf("sunday"),1);
+  days.push("sunday");
+
+  var Q1 = /расписание(?= на| в)|какие(?= предметы(?= в)| уроки(?= в))/;
+  var Q2 = //;
+  var Answer = "";
 
   console.log(txt); // Выводим в консоль значение переменной txt, которая содержит значение свойства "text" (маленькие буквы) из объекта контекста "ctx"
 
-  if (wee.test(txt)) {
-    ;
-  } else if (cur.test(txt)) {
-    ;
-  } else {
-    var days = [];
-    if (mon.test(txt)) { days.push("monday"); }
-    if (tue.test(txt)) { days.push("tuesday"); }
-    if (wed.test(txt)) { days.push("wednesday"); }
-    if (thu.test(txt)) { days.push("thursday"); }
-    if (fri.test(txt)) { days.push("friday"); }
-    if (sat.test(txt)) { days.push("saturday"); }
-    if (sun.test(txt)) { days.push("sunday"); }
-
-    var Q1 = /расписание(?= на| в)|какие(?= предметы(?= в)| уроки(?= в))/; // Вторая часть пока не работает :(
-    if (Q1.test(txt)) {
-      var sch = "Вот расписание на\n";
+  if (Q1.test(txt)) {
+    if (re_wee.test(txt)) {
+      var Answer = "Расписание на неделю:\n";
       for ( var i = 0; i < days.length; i++ ) {
-        // Самописная функции tdotw, getScheduleDay
-        //sch = sch + tdotw(days[i]) + ":\n";
-        sch = sch + getScheduleDay(days[i]) + "\n";
+        Answer = Answer + getScheduleDay(days[i]) + "\n";
       }
-      ctx.reply( sch ); // Шлём готовый ответ пользователю
-    }
-  }
+    } else if (re_day.test(txt)) {
+      var Answer = "Вот расписание на ";
+      Answer = Answer + getScheduleDay(day) + "\n";
+    } else {
+      var days = [];
+      if (mon.test(txt)) { days.push("monday"); }
+      if (tue.test(txt)) { days.push("tuesday"); }
+      if (wed.test(txt)) { days.push("wednesday"); }
+      if (thu.test(txt)) { days.push("thursday"); }
+      if (fri.test(txt)) { days.push("friday"); }
+      if (sat.test(txt)) { days.push("saturday"); }
+      if (sun.test(txt)) { days.push("sunday"); }
 
-  // Ответ бота, если день недели не был указан в сообщении
-  //ctx.reply( 'Не понял вас, мастер Люк' ); //Скайвокер
+      if (days.length > 0) {
+        var Answer = "Вот расписание на\n";
+        for ( var i = 0; i < days.length; i++ ) {
+          // Самописная функции tdotw, getScheduleDay
+          //sch = sch + tdotw(days[i]) + ":\n";
+          Answer = Answer + getScheduleDay(days[i]) + "\n";
+        }
+      } else { Answer = "Упс... Не знаю, что и сказать, мастер Люк"; }
+    }
+    ctx.reply( Answer ); // Шлём готовый ответ пользователю
+  } else {
+    // Ответ бота, если день недели не был указан в сообщении
+    ctx.reply( 'Не понял вас, мастер Люк' ); //Скайвокер
+  }
 });
 
 ////////////////////////////////////////////////////////////////////////////////
