@@ -87,13 +87,13 @@ var schedule = { monday :   [ {time:' 8:00', subject:'Музыка'},
 // Translate Day Of The Week (tdotw)
 var tdotw = function(day_of_the_week) {
   switch(day_of_the_week){
-    case "monday": return "понедельник"; break;
-    case "tuesday": return "вторник"; break;
-    case "wednesday": return "среда"; break;
-    case "thursday": return "четверг"; break;
-    case "friday": return "пятница"; break;
-    case "saturday": return "суббота"; break;
-    case "sunday": return "воскресенье"; break;
+    case "monday": return "понедельник"; //break;
+    case "tuesday": return "вторник"; //break;
+    case "wednesday": return "среда"; //break;
+    case "thursday": return "четверг"; //break;
+    case "friday": return "пятница"; //break;
+    case "saturday": return "суббота"; //break;
+    case "sunday": return "воскресенье"; //break;
     default: return "";
   }
 }
@@ -106,18 +106,18 @@ var getScheduleDay = function(day_of_the_week) {
                         s = s + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
                       }
                       return s;
-                      break;
+                      //break;
     case "tuesday":   var s = "";
                       for ( i = 0; i < schedule.monday.length; i++ ) {
                         s = s + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
                       }
                       return s;
-                      break;
-    case "wednesday": return "среда"; break;
-    case "thursday": return "четверг"; break;
-    case "friday": return "пятница"; break;
-    case "saturday": return "суббота"; break;
-    case "sunday": return "воскресенье"; break;
+                      //break;
+    case "wednesday": return "среда"; //break;
+    case "thursday": return "четверг"; //break;
+    case "friday": return "пятница"; //break;
+    case "saturday": return "суббота"; //break;
+    case "sunday": return "воскресенье"; //break;
     default: return "";
   }
 }
