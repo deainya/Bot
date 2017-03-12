@@ -87,3 +87,7 @@ sum ? => 9!
 Бесконечный цикл:
 var sum = 0;
 for ( index = 0; index >= 0; index=index++ ) { sum = sum + 1; }
+
+var fri = /(пятница|пт.)/;
+var sat = /(суббота|сб.)/;
+var sun = /(воскресенье|вс.)/;

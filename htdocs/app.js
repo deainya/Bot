@@ -91,6 +91,7 @@ app.on('text', function(ctx) {
   var mon = /(понедельник|пн.)/;
   var tue = /(вторник|вт.)/;
   var wed = /(среда|ср.)/;
+  var thu = /(четверг|чт.)/;
   var txt = ctx.message.text.toLowerCase(); // Заглавные буквы свойства "text" из объекта контекста "ctx" делает маленткими
 
   console.log(txt); // Выводим в консоль значение переменной txt, которая содержит значение свойства "text" (маленькие буквы) из объекта контекста "ctx"
@@ -116,6 +117,13 @@ app.on('text', function(ctx) {
     var sch = 'Расписание на среду:' + '\n';
     for ( i = 0; i < schedule.wednesday.length; i++ ) {
       sch = sch + schedule.wednesday[i].time + ' ' + schedule.wednesday[i].subject + '\n';
+    }
+    ctx.reply( sch );
+  } else if (thu.test(txt)) {
+    // Четверг
+    var sch = 'Расписание на четверг:' + '\n';
+    for ( i = 0; i < schedule.thursday.length; i++ ) {
+      sch = sch + schedule.thursday[i].time + ' ' + schedule.thursday[i].subject + '\n';
     }
     ctx.reply( sch );
   } else {
