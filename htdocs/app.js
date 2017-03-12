@@ -145,10 +145,8 @@ app.on('text', function(ctx) {
     ctx.reply( sch );
   } else if (sun.test(txt)) {
     // Воскресенье
-    var sch = 'Расписание на воскресенье:' + '\n';
-    for ( i = 0; i < schedule.sunday.length; i++ ) {
-      sch = sch + schedule.sunday[i].time + ' ' + schedule.sunday[i].subject + '\n';
-    }
+    var sch = 'Расписание на воскресенье:' + '\n' + 'Сегодня отдыхаем.';
+
     ctx.reply( sch );
   } else {
     // Ответ бота, если день недели не был указан в сообщении
