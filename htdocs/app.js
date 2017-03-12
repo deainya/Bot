@@ -143,6 +143,7 @@ app.on('text', function(ctx) {
         }
       }
       sch = sch + tdotw(days[days.length]) + "...\n";
+      ctx.reply( sch ); // Шлём готовый ответ пользователю
     }
   }
 
