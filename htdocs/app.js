@@ -157,24 +157,29 @@ app.on('text', function(ctx) {
     if (fri.test(txt)) { days.push("friday"); }
     if (sat.test(txt)) { days.push("saturday"); }
     if (sun.test(txt)) { days.push("sunday"); }
-    console.log(days);
-    var Q1 = /расписание на|(какие(?=предметы|уроки)(?=в))/; // Вторая часть пока не работает :(
 
+    var Q1 = /(расписание на)/; //|(какие(?=предметы|уроки)(?=в))/; // Вторая часть пока не работает :(
     if (Q1.test(txt)) {
       var sch = "Вот расписание на\n";
       // Основной Цикл
+      console.log(days.length);
+      console.log(days);
       for ( i = 0; i < days.length; i++ ) {
+        /*
         // days: ['monday']        // days: ['monday', 'thursday', 'saturday']        // days: []
         // Самописная функция tdotw
-        sch = sch + tdotw(days[i]) + ":\n";
         // Цикл в цикле
         //for ( j = 0; j < schedule.monday.length; j++ ) {
         //  sch = sch + schedule.monday[j].time + ' ' + schedule.monday[j].subject + '\n';
         //}
+        */
+        sch = sch + tdotw(days[i]) + ":\n";
         sch = sch + getScheduleDay(days[i]) + "\n";
-        console.log("в цикле: " + sch);
+        console.log("в цикле: \n" + sch);
+        console.log(i);
       }
-      console.log("после цикла: " + sch);
+      console.log("после цикла: \n" + sch);
+      console.log(i);
       //sch = sch + tdotw(days[days.length-1]) + ":\n";
       //sch = sch + getScheduleDay(days[days.length-1]) + "\n";
       ctx.reply( sch ); // Шлём готовый ответ пользователю
