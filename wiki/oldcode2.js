@@ -161,6 +161,9 @@ app.on('text', function(ctx) {
 
   console.log(txt); // Выводим в консоль значение переменной txt, которая содержит значение свойства "text" (маленькие буквы) из объекта контекста "ctx"
 
+////////////////////////////////////////////////////////////////////////////////
+// Добавлено. Что происходит в блоке ниже?
+////////////////////////////////////////////////////////////////////////////////
   if (wee.test(txt)) {
     ;
   } else if (cur.test(txt)) {
@@ -178,6 +181,7 @@ app.on('text', function(ctx) {
     var Q1 = /(расписание на)/; //|(какие(?=предметы|уроки)(?=в))/; // Вторая часть пока не работает :(
     if (Q1.test(txt)) {
       var sch = "Вот расписание на\n";
+      // Основной Цикл
       for ( var i = 0; i < days.length; i++ ) {
         // Самописная функции tdotw, getScheduleDay
         //sch = sch + tdotw(days[i]) + ":\n";
@@ -186,9 +190,70 @@ app.on('text', function(ctx) {
       ctx.reply( sch ); // Шлём готовый ответ пользователю
     }
   }
+  /*
+  Вопросы на которые будет отвечать бот:
+  1. Какое расписание на [день/--сегодня]?
+  1a. Покажи расписание на [день/--сегодня].
+  --1b. Какие предметы/уроки [--сегодня]?
+  1c. Какие предметы/уроки в [день]?
+  */
+////////////////////////////////////////////////////////////////////////////////
 
-  // Ответ бота, если день недели не был указан в сообщении
-  //ctx.reply( 'Не понял вас, мастер Люк' ); //Скайвокер
+  // Далее готовим ответ на полученный контекст "ctx" от пользователя
+  // Ранее было так: ctx.reply( 'Расписание на понедельник:'+'\n'+JSON.stringify(schedule.monday) ); //[0].time+' '+schedule.monday[0].subject) );
+/*  if (mon.test(txt)) {
+    var sch = 'Расписание на понедельник:' + '\n'; // Задали начальное значение переменной sch: "Расписание на понедельник:" (+ символ переноса строки)
+    // В цикле выводим расписание на понедельник
+    for ( i = 0; i < schedule.monday.length; i++ ) {
+      sch = sch + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
+    }
+    ctx.reply( sch ); // Это ответ пользователю
+  } else if (tue.test(txt)) {
+    // Вторник
+    var sch = 'Расписание на вторник:' + '\n';
+    for ( i = 0; i < schedule.tuesday.length; i++ ) {
+      sch = sch + schedule.tuesday[i].time + ' ' + schedule.tuesday[i].subject + '\n';
+    }
+    ctx.reply( sch );
+  } else if (wed.test(txt)) {
+    // Среда
+    var sch = 'Расписание на среду:' + '\n';
+    for ( i = 0; i < schedule.wednesday.length; i++ ) {
+      sch = sch + schedule.wednesday[i].time + ' ' + schedule.wednesday[i].subject + '\n';
+    }
+    ctx.reply( sch );
+  } else if (thu.test(txt)) {
+    // Четверг
+    var sch = 'Расписание на четверг:' + '\n';
+    for ( i = 0; i < schedule.thursday.length; i++ ) {
+      sch = sch + schedule.thursday[i].time + ' ' + schedule.thursday[i].subject + '\n';
+    }
+    ctx.reply( sch );
+  } else if (fri.test(txt)) {
+    // Пятница
+    var sch = 'Расписание на пятницу:' + '\n';
+    for ( i = 0; i < schedule.friday.length; i++ ) {
+      sch = sch + schedule.friday[i].time + ' ' + schedule.friday[i].subject + '\n';
+    }
+    ctx.reply( sch );
+  } else if (sat.test(txt)) {
+    // Суббота
+    var sch = 'Расписание на субботу:' + '\n';
+    for ( i = 0; i < schedule.saturday.length; i++ ) {
+      sch = sch + schedule.saturday[i].time + ' ' + schedule.saturday[i].subject + '\n';
+    }
+    ctx.reply( sch );
+  } else if (sun.test(txt)) {
+    // Воскресенье
+    var sch = 'В воскресенье отдых!';
+
+    ctx.reply( sch );
+  } else {
+    // Ответ бота, если день недели не был указан в сообщении
+
+    ctx.reply( 'Не понял вас, мастер Люк' ); //Скайвокер
+  }
+  */
 });
 
 ////////////////////////////////////////////////////////////////////////////////
