@@ -106,23 +106,35 @@ var getScheduleDay = function(day_of_the_week) {
                         s = s + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
                       }
                       return s;
-                      //break;
     case "tuesday":   var s = "";
-                      for ( i = 0; i < schedule.monday.length; i++ ) {
-                        s = s + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
+                      for ( var i = 0; i < schedule.tuesday.length; i++ ) {
+                        s = s + schedule.tuesday[i].time + ' ' + schedule.tuesday[i].subject + '\n';
                       }
                       return s;
-                      //break;
-    case "wednesday": return "среда"; //break;
-    case "thursday": return "четверг"; //break;
-    case "friday": return "пятница"; //break;
-    case "saturday": return "суббота"; //break;
-    case "sunday": return "воскресенье"; //break;
-    default: return "";
+    case "wednesday": var s = "";
+                      for ( var i = 0; i < schedule.wednesday.length; i++ ) {
+                        s = s + schedule.wednesday[i].time + ' ' + schedule.wednesday[i].subject + '\n';
+                      }
+                      return s;
+    case "thursday":  var s = "";
+                      for ( var i = 0; i < schedule.thursday.length; i++ ) {
+                        s = s + schedule.thursday[i].time + ' ' + schedule.thursday[i].subject + '\n';
+                      }
+                      return s;
+    case "friday":    var s = "";
+                      for ( var i = 0; i < schedule.friday.length; i++ ) {
+                        s = s + schedule.friday[i].time + ' ' + schedule.friday[i].subject + '\n';
+                      }
+                      return s;
+    case "saturday":   var s = "";
+                      for ( var i = 0; i < schedule.saturday.length; i++ ) {
+                        s = s + schedule.saturday[i].time + ' ' + schedule.saturday[i].subject + '\n';
+                      }
+                      return s;
+    case "sunday":    return "Отдыхай дружок";
+    default:          return "";
   }
 }
-
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // Задаём реакцию бота на текстовые сообщения
@@ -160,28 +172,20 @@ app.on('text', function(ctx) {
 
     var Q1 = /(расписание на)/; //|(какие(?=предметы|уроки)(?=в))/; // Вторая часть пока не работает :(
     if (Q1.test(txt)) {
-      var sch = "Вот расписание на\n";
+      var sch = "Вот расписание на ";
       // Основной Цикл
-      console.log(days.length);
-      console.log(days);
-      for ( var i = 0; i < days.length; i++ ) {
-        /*
+      for ( var i = 0; i < days.length-1; i++ ) {
         // days: ['monday']        // days: ['monday', 'thursday', 'saturday']        // days: []
         // Самописная функция tdotw
+        sch = sch + tdotw(days[i]) + ":\n";
         // Цикл в цикле
         //for ( j = 0; j < schedule.monday.length; j++ ) {
         //  sch = sch + schedule.monday[j].time + ' ' + schedule.monday[j].subject + '\n';
         //}
-        */
-        sch = sch + tdotw(days[i]) + ":\n";
         sch = sch + getScheduleDay(days[i]) + "\n";
-        console.log("в цикле: \n" + sch);
-        console.log(i);
       }
-      console.log("после цикла: \n" + sch);
-      console.log(i);
-      //sch = sch + tdotw(days[days.length-1]) + ":\n";
-      //sch = sch + getScheduleDay(days[days.length-1]) + "\n";
+      sch = sch + tdotw(days[days.length-1]) + ":\n";
+      sch = sch + getScheduleDay(days[days.length-1]) + "\n";
       ctx.reply( sch ); // Шлём готовый ответ пользователю
     }
   }
@@ -247,9 +251,6 @@ app.on('text', function(ctx) {
     // Ответ бота, если день недели не был указан в сообщении
     ctx.reply( 'Не понял вас, мастер Люк' ); //Скайвокер
   }
-
-  ctx.reply( 'Debug' );
-
 });
 
 ////////////////////////////////////////////////////////////////////////////////
