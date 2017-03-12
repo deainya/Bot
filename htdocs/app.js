@@ -89,7 +89,7 @@ var getScheduleDay = function(day_of_the_week) {
                         s = s + schedule.tuesday[i].time + ' ' + schedule.tuesday[i].subject + '\n';
                       }
                       return s;
-    case "wednesday": var s = "среда:\n";
+    case "wednesday": var s = "среду:\n";
                       for ( var i = 0; i < schedule.wednesday.length; i++ ) {
                         s = s + schedule.wednesday[i].time + ' ' + schedule.wednesday[i].subject + '\n';
                       }
@@ -99,12 +99,12 @@ var getScheduleDay = function(day_of_the_week) {
                         s = s + schedule.thursday[i].time + ' ' + schedule.thursday[i].subject + '\n';
                       }
                       return s;
-    case "friday":    var s = "пятница:\n";
+    case "friday":    var s = "пятницу:\n";
                       for ( var i = 0; i < schedule.friday.length; i++ ) {
                         s = s + schedule.friday[i].time + ' ' + schedule.friday[i].subject + '\n';
                       }
                       return s;
-    case "saturday":   var s = "суббота:\n";
+    case "saturday":   var s = "субботу:\n";
                       for ( var i = 0; i < schedule.saturday.length; i++ ) {
                         s = s + schedule.saturday[i].time + ' ' + schedule.saturday[i].subject + '\n';
                       }
