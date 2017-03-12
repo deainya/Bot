@@ -74,16 +74,6 @@ var schedule = { monday :   [ {time:' 8:00', subject:'Музыка'},
 var tdotw = function(day_of_the_week) {
   var days = {"monday":"понедельник", "tuesday":"вторник", "wednesday":"среда", "thursday":"четверг", "friday":"пятница", "saturday":"суббота", "sunday":"воскресенье"};
   return days[day_of_the_week];
-  /*switch (day_of_the_week){
-    case "monday": return "понедельник";
-    case "tuesday": return "вторник";
-    case "wednesday": return "среда";
-    case "thursday": return "четверг";
-    case "friday": return "пятница";
-    case "saturday": return "суббота";
-    case "sunday": return "воскресенье";
-    default: return "";
-  }*/
 }
 
 // "взять день расписания"
@@ -130,13 +120,15 @@ var getScheduleDay = function(day_of_the_week) {
 app.on('text', function(ctx) {
   var txt = ctx.message.text.toLowerCase(); // Заглавные буквы свойства "text" из объекта контекста "ctx" делает маленткими
 
-  var mon = /(понедельник|пн.)/;
-  var tue = /(вторник|вт.)/;
-  var wed = /(среда|ср.)/;
-  var thu = /(четверг|чт.)/;
-  var fri = /(пятница|пт.)/;
-  var sat = /(суббота|сб.)/;
-  var sun = /(воскресенье|вс.)/;
+  var mon = /(понедельник|пн.|пн |пн$)/.test(txt);
+  var tue = /(вторник|вт.|вт |вт$)/.test(txt);
+  var wed = /(среда|ср.|ср |ср$)/.test(txt);
+  var thu = /(четверг|чт.|чт |чт$)/.test(txt);
+  var fri = /(пятница|пт.|пт |пт$)/.test(txt);
+  var sat = /(суббота|сб.|сб |сб$)/.test(txt);
+  var sun = /(воскресенье|вс.|вс |вс$)/.test(txt);
+  var day = /(день|сегодня)/.test(txt);
+  var week = /(неделю)/.test(txt);
 
   var today = new Date(); // Сегодняшняя дата
   var Days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
@@ -147,35 +139,32 @@ app.on('text', function(ctx) {
   Days.splice(Days.indexOf("sunday"),1);
   Days.push("sunday");
 
-  var day = /(день|сегодня)/.test(txt);
-  var wee = /(неделю)/.test(txt);
-
   var Q1 = /расписание сегодня|расписание(?= на| в)|какие(?= предметы сегодня| уроки сегодня)|какие(?= предметы(?= в)| уроки(?= в))/.test(txt);
   //var Q2 = ;
   var Answer = "";
 
-  console.log(txt); // Выводим в консоль значение переменной txt, которая содержит значение свойства "text" (маленькие буквы) из объекта контекста "ctx"
+  console.log(txt); // Выводим в консоль значение переменной txt (текст сообщения пользователя), которая содержит значение свойства "text" (маленькие буквы) из объекта контекста "ctx" (контекст послания пользователя)
 
   if (Q1) {
-    if (wee) {
+    if (week) {
       var Answer = "Расписание на неделю...\n";
       for ( var i = 0; i < Days.length; i++ ) {
         Answer = Answer + getScheduleDay(Days[i]) + "\n";
       }
     } else {
       Days = [];
-      if (mon.test(txt)||day&&Day==="monday"   ) { Days.push("monday");    }
-      if (tue.test(txt)||day&&Day==="tuesday"  ) { Days.push("tuesday");   }
-      if (wed.test(txt)||day&&Day==="wednesday") { Days.push("wednesday"); }
-      if (thu.test(txt)||day&&Day==="thursday" ) { Days.push("thursday");  }
-      if (fri.test(txt)||day&&Day==="friday"   ) { Days.push("friday");    }
-      if (sat.test(txt)||day&&Day==="saturday" ) { Days.push("saturday");  }
-      if (sun.test(txt)||day&&Day==="sunday"   ) { Days.push("sunday");    }
+      if (mon||day&&Day==="monday"   ) { Days.push("monday");    }
+      if (tue||day&&Day==="tuesday"  ) { Days.push("tuesday");   }
+      if (wed||day&&Day==="wednesday") { Days.push("wednesday"); }
+      if (thu||day&&Day==="thursday" ) { Days.push("thursday");  }
+      if (fri||day&&Day==="friday"   ) { Days.push("friday");    }
+      if (sat||day&&Day==="saturday" ) { Days.push("saturday");  }
+      if (sun||day&&Day==="sunday"   ) { Days.push("sunday");    }
 
       if (Days.length > 0) {
         var Answer = "Вот расписание на ";
         for ( var i = 0; i < Days.length; i++ ) {
-          // Самописная функции tdotw, getScheduleDay
+          // Самописные функции tdotw, getScheduleDay
           //Answer = Answer + tdotw(Days[i]) + ":\n";
           Answer = Answer + getScheduleDay(Days[i]) + "\n";
         }
