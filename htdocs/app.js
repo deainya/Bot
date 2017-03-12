@@ -101,12 +101,12 @@ var tdotw = function(day_of_the_week) {
 // "взять день расписания"
 var getScheduleDay = function(day_of_the_week) {
   var s = "";
-  if (!tdotw(day_of_the_week)) {
+  //if (!tdotw(day_of_the_week)) {
     s = tdotw(day_of_the_week) + ":\n";
     for ( var i = 0; i < schedule[day_of_the_week].length; i++ ) {
       s = s + schedule[day_of_the_week][i].time + ' ' + schedule[day_of_the_week][i].subject + '\n';
     }
-  }
+  //}
   return s;
   /*switch(day_of_the_week){
     case "monday":    var s = "понедельник:\n";
