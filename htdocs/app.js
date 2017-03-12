@@ -131,7 +131,7 @@ var getScheduleDay = function(day_of_the_week) {
                         s = s + schedule.saturday[i].time + ' ' + schedule.saturday[i].subject + '\n';
                       }
                       return s;
-    case "sunday":    return "воскресенье\n Отдыхай дружок";
+    case "sunday":    return "воскресенье:\nБез уроков. Отдыхай, дружок :)";
     default:          return "";
   }
 }
