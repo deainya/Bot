@@ -103,35 +103,35 @@ var getScheduleDay = function(day_of_the_week) {
   switch(day_of_the_week){
     case "monday":    var s = "понедельник:\n";
                       for ( var i = 0; i < schedule.monday.length; i++ ) {
-                        s = s + schedule.monday[i].time + ' ' + "schedule.monday[i].subject" + '\n';
+                        s = s + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
                       }
                       return s;
-    case "tuesday":   var s = "";
+    case "tuesday":   var s = "вторник:\n ";
                       for ( var i = 0; i < schedule.tuesday.length; i++ ) {
                         s = s + schedule.tuesday[i].time + ' ' + schedule.tuesday[i].subject + '\n';
                       }
                       return s;
-    case "wednesday": var s = "";
+    case "wednesday": var s = "среда:\n";
                       for ( var i = 0; i < schedule.wednesday.length; i++ ) {
                         s = s + schedule.wednesday[i].time + ' ' + schedule.wednesday[i].subject + '\n';
                       }
                       return s;
-    case "thursday":  var s = "";
+    case "thursday":  var s = "четверг:\n";
                       for ( var i = 0; i < schedule.thursday.length; i++ ) {
                         s = s + schedule.thursday[i].time + ' ' + schedule.thursday[i].subject + '\n';
                       }
                       return s;
-    case "friday":    var s = "";
+    case "friday":    var s = "пятница:\n";
                       for ( var i = 0; i < schedule.friday.length; i++ ) {
                         s = s + schedule.friday[i].time + ' ' + schedule.friday[i].subject + '\n';
                       }
                       return s;
-    case "saturday":   var s = "";
+    case "saturday":   var s = "суббота:\n";
                       for ( var i = 0; i < schedule.saturday.length; i++ ) {
                         s = s + schedule.saturday[i].time + ' ' + schedule.saturday[i].subject + '\n';
                       }
                       return s;
-    case "sunday":    return "Отдыхай дружок";
+    case "sunday":    return "воскресенье\n Отдыхай дружок";
     default:          return "";
   }
 }
