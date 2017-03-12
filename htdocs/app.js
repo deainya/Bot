@@ -177,7 +177,7 @@ app.on('text', function(ctx) {
     if (sat.test(txt)) { days.push("saturday"); }
     if (sun.test(txt)) { days.push("sunday"); }
 
-    var Q1 = /(расписание(?=на|в))|(какие(?=предметы|уроки)(?=в))/; // Вторая часть пока не работает :(
+    var Q1 = /расписание(?= на| в)|какие(?= предметы(?= в)| уроки(?= в))/; // Вторая часть пока не работает :(
     if (Q1.test(txt)) {
       var sch = "Вот расписание на\n";
       for ( var i = 0; i < days.length; i++ ) {
