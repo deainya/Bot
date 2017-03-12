@@ -102,7 +102,7 @@ var tdotw = function(day_of_the_week) {
 var getScheduleDay = function(day_of_the_week) {
   switch(day_of_the_week){
     case "monday":    var s = "";
-                      for ( i = 0; i < schedule.monday.length; i++ ) {
+                      for ( var i = 0; i < schedule.monday.length; i++ ) {
                         s = s + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
                       }
                       return s;
@@ -164,7 +164,7 @@ app.on('text', function(ctx) {
       // Основной Цикл
       console.log(days.length);
       console.log(days);
-      for ( i = 0; i < days.length; i++ ) {
+      for ( var i = 0; i < days.length; i++ ) {
         /*
         // days: ['monday']        // days: ['monday', 'thursday', 'saturday']        // days: []
         // Самописная функция tdotw
