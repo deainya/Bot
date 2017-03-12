@@ -107,7 +107,7 @@ var getScheduleDay = function(day_of_the_week) {
                       }
                       return s;
                       break;
-    case "tuesday":  var s = "";
+    case "tuesday":   var s = "";
                       for ( i = 0; i < schedule.monday.length; i++ ) {
                         s = s + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
                       }
@@ -158,7 +158,7 @@ app.on('text', function(ctx) {
     if (sat.test(txt)) { days.push("saturday"); }
     if (sun.test(txt)) { days.push("sunday"); }
     console.log(days);
-    var Q1 = /расписание на|(какие(?=предметы|уроки)(?=в))/; //Вторая часть пока не работает :(
+    var Q1 = /расписание на|(какие(?=предметы|уроки)(?=в))/; // Вторая часть пока не работает :(
 
     if (Q1.test(txt)) {
       var sch = "Вот расписание на\n";
@@ -172,7 +172,9 @@ app.on('text', function(ctx) {
         //  sch = sch + schedule.monday[j].time + ' ' + schedule.monday[j].subject + '\n';
         //}
         sch = sch + getScheduleDay(days[i]) + "\n";
+        console.log("в цикле: " + sch);
       }
+      console.log("после цикла: " + sch);
       //sch = sch + tdotw(days[days.length-1]) + ":\n";
       //sch = sch + getScheduleDay(days[days.length-1]) + "\n";
       ctx.reply( sch ); // Шлём готовый ответ пользователю
