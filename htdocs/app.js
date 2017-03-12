@@ -101,7 +101,7 @@ var tdotw = function(day_of_the_week) {
 // "взять день расписания"
 var getScheduleDay = function(day_of_the_week) {
   switch(day_of_the_week){
-    case "monday":    var s = "";
+    case "monday":    var s = "понедельник";
                       for ( var i = 0; i < schedule.monday.length; i++ ) {
                         s = s + schedule.monday[i].time + ' ' + schedule.monday[i].subject + '\n';
                       }
