@@ -4,28 +4,16 @@
  * И чем вкусным сегодня угощают в столовой (а может быть что-то другое...)
 
  Вопросы на которые будет отвечать бот:
- 1. Какое расписание на [день/сегодня]?
- 1a. Покажи расписание на [день/сегодня].
- 1b. Какие предметы/уроки [сегодня]?
- 1c. Какие предметы/уроки в [день]?
- 1d. Покажи (всё) расписане (на неделю).
- 1e. Какое расписание на неделю?
+ 1. Какое расписание на [сегодня/день недели/неделю]? --доработать: Какое расписание сегодя?
+ 1a. Покажи (всё) расписание (на) [сегодня/день недели/неделю]. --доработать: Покажи/выведи/напиши/напечатай/дай (всё) расписание
+ 1b. Какие предметы/уроки (в) [сегодня/день недели]?
 
- 2. Во сколько начинаются/заканчиваются уроки [сегодня]?
- 2a. Во сколько начинаются/заканчиваются уроки в [день]?
+ 2. Во сколько начинаются/заканчиваются уроки (в) [сегодня/день недели]?
+ 3. Сколько/какое количество предметов/уроков (в) [сегодня/день недели]?
+ 4. Есть ли (у меня) [предмет] (в) [сегодня/день недели]?
+ 5. Во сколько (у меня) [предмет] (в) [сегодня/день недели]?
 
- 3. Сколько/какое количество предметов/уроков [сегодня]?
- 3a. Сколько/какое количество предметов/уроков в [день]?
-
- 4. Есть ли (у меня) [предмет] [сегодня]?
- 4a. Есть ли (у меня) [предмет] в [день]?
-
- 5. Во сколько (у меня) [предмет] [сегдоня]?
- 5a. Во сколько (у меня) [предмет] в [день]?
-
- 6. Изменения в расписании...
-
- 7. Как быть если указано несколько дней...
+ * Изменения в расписании!
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -149,47 +137,46 @@ app.on('text', function(ctx) {
   var fri = /(пятница|пт.)/;
   var sat = /(суббота|сб.)/;
   var sun = /(воскресенье|вс.)/;
-  var re_day = /(день|сегодня)/;
-  var re_wee = /(неделю)/;
+  var day = /(день|сегодня)/;
+  var wee = /(неделю)/;
 
   var today = new Date(); // Сегодняшняя дата
-  var days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
-  var day = days[today.getDay()]; // Сегодняшний день недели
+  var Days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+  var Day = Days[today.getDay()]; // Сегодняшний день недели
+  var nDay = Days[(today.getDay()+1)%7]; // Завтра (next day)
+  var nnDay = Days[(today.getDay()+2)%7]; // Послезавтра (next next day)
   // Переносим Вс. в хвост массива
-  days.splice(days.indexOf("sunday"),1);
-  days.push("sunday");
+  Days.splice(Days.indexOf("sunday"),1);
+  Days.push("sunday");
 
-  var Q1 = /расписание(?= на| в)|какие(?= предметы(?= в)| уроки(?= в))/;
+  var Q1 = /расписание сегодня|расписание(?= на| в)|какие(?= предметы сегодня| уроки сегодня)|какие(?= предметы(?= в)| уроки(?= в))/;
   //var Q2 = ;
   var Answer = "";
 
   console.log(txt); // Выводим в консоль значение переменной txt, которая содержит значение свойства "text" (маленькие буквы) из объекта контекста "ctx"
 
   if (Q1.test(txt)) {
-    if (re_wee.test(txt)) {
-      var Answer = "Расписание на неделю:\n";
-      for ( var i = 0; i < days.length; i++ ) {
-        Answer = Answer + getScheduleDay(days[i]) + "\n";
+    if (wee.test(txt)) {
+      var Answer = "Расписание на неделю...\n";
+      for ( var i = 0; i < Days.length; i++ ) {
+        Answer = Answer + getScheduleDay(Days[i]) + "\n";
       }
-    } else if (re_day.test(txt)) {
-      var Answer = "Вот расписание на ";
-      Answer = Answer + getScheduleDay(day) + "\n";
     } else {
-      var days = [];
-      if (mon.test(txt)) { days.push("monday"); }
-      if (tue.test(txt)) { days.push("tuesday"); }
-      if (wed.test(txt)) { days.push("wednesday"); }
-      if (thu.test(txt)) { days.push("thursday"); }
-      if (fri.test(txt)) { days.push("friday"); }
-      if (sat.test(txt)) { days.push("saturday"); }
-      if (sun.test(txt)) { days.push("sunday"); }
+      Days = [];
+      if (mon.test(txt)||day.test(txt)&&Day==="monday") { Days.push("monday"); }
+      if (tue.test(txt)||day.test(txt)&&Day==="tuesday") { Days.push("tuesday"); }
+      if (wed.test(txt)||day.test(txt)&&Day==="wednesday") { Days.push("wednesday"); }
+      if (thu.test(txt)||day.test(txt)&&Day==="thursday") { Days.push("thursday"); }
+      if (fri.test(txt)||day.test(txt)&&Day==="friday") { Days.push("friday"); }
+      if (sat.test(txt)||day.test(txt)&&Day==="saturday") { Days.push("saturday"); }
+      if (sun.test(txt)||day.test(txt)&&Day==="sunday") { Days.push("sunday"); }
 
-      if (days.length > 0) {
-        var Answer = "Вот расписание на\n";
-        for ( var i = 0; i < days.length; i++ ) {
+      if (Days.length > 0) {
+        var Answer = "Вот расписание на ";
+        for ( var i = 0; i < Days.length; i++ ) {
           // Самописная функции tdotw, getScheduleDay
-          //sch = sch + tdotw(days[i]) + ":\n";
-          Answer = Answer + getScheduleDay(days[i]) + "\n";
+          //Answer = Answer + tdotw(Days[i]) + ":\n";
+          Answer = Answer + getScheduleDay(Days[i]) + "\n";
         }
       } else { Answer = "Упс... Не знаю, что и сказать, мастер Люк"; }
     }
