@@ -143,6 +143,13 @@ app.on('text', function(ctx) {
       sch = sch + schedule.saturday[i].time + ' ' + schedule.saturday[i].subject + '\n';
     }
     ctx.reply( sch );
+  } else if (sun.test(txt)) {
+    // Воскресенье
+    var sch = 'Расписание на воскресенье:' + '\n';
+    for ( i = 0; i < schedule.sunday.length; i++ ) {
+      sch = sch + schedule.sunday[i].time + ' ' + schedule.sunday[i].subject + '\n';
+    }
+    ctx.reply( sch );
   } else {
     // Ответ бота, если день недели не был указан в сообщении
     ctx.reply( 'Не понял вас, мастер Люк' ); //Скайвокер
