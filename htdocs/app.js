@@ -172,20 +172,13 @@ app.on('text', function(ctx) {
 
     var Q1 = /(расписание на)/; //|(какие(?=предметы|уроки)(?=в))/; // Вторая часть пока не работает :(
     if (Q1.test(txt)) {
-      var sch = "Вот расписание на ";
+      var sch = "Вот расписание на\n";
       // Основной Цикл
-      for ( var i = 0; i < days.length-1; i++ ) {
-        // days: ['monday']        // days: ['monday', 'thursday', 'saturday']        // days: []
-        // Самописная функция tdotw
-        sch = sch + tdotw(days[i]) + ":\n";
-        // Цикл в цикле
-        //for ( j = 0; j < schedule.monday.length; j++ ) {
-        //  sch = sch + schedule.monday[j].time + ' ' + schedule.monday[j].subject + '\n';
-        //}
+      for ( var i = 0; i < days.length; i++ ) {
+        // Самописная функции tdotw, getScheduleDay
+        //sch = sch + tdotw(days[i]) + ":\n";
         sch = sch + getScheduleDay(days[i]) + "\n";
       }
-      sch = sch + tdotw(days[days.length-1]) + ":\n";
-      sch = sch + getScheduleDay(days[days.length-1]) + "\n";
       ctx.reply( sch ); // Шлём готовый ответ пользователю
     }
   }
@@ -200,7 +193,7 @@ app.on('text', function(ctx) {
 
   // Далее готовим ответ на полученный контекст "ctx" от пользователя
   // Ранее было так: ctx.reply( 'Расписание на понедельник:'+'\n'+JSON.stringify(schedule.monday) ); //[0].time+' '+schedule.monday[0].subject) );
-  if (mon.test(txt)) {
+/*  if (mon.test(txt)) {
     var sch = 'Расписание на понедельник:' + '\n'; // Задали начальное значение переменной sch: "Расписание на понедельник:" (+ символ переноса строки)
     // В цикле выводим расписание на понедельник
     for ( i = 0; i < schedule.monday.length; i++ ) {
@@ -249,8 +242,10 @@ app.on('text', function(ctx) {
     ctx.reply( sch );
   } else {
     // Ответ бота, если день недели не был указан в сообщении
+
     ctx.reply( 'Не понял вас, мастер Люк' ); //Скайвокер
   }
+  */
 });
 
 ////////////////////////////////////////////////////////////////////////////////
