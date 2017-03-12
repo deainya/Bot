@@ -153,6 +153,8 @@ app.on('text', function(ctx) {
       }
     } else {
       Days = [];
+      console.log(Days);
+
       if (mon||day&&Day==="monday"   ) { Days.push("monday");    }
       if (tue||day&&Day==="tuesday"  ) { Days.push("tuesday");   }
       if (wed||day&&Day==="wednesday") { Days.push("wednesday"); }
@@ -160,6 +162,11 @@ app.on('text', function(ctx) {
       if (fri||day&&Day==="friday"   ) { Days.push("friday");    }
       if (sat||day&&Day==="saturday" ) { Days.push("saturday");  }
       if (sun||day&&Day==="sunday"   ) { Days.push("sunday");    }
+
+      console.log(mon);
+      console.log(day);
+      console.log(Day);
+      console.log(Days);
 
       if (Days.length > 0) {
         var Answer = "Вот расписание на ";
