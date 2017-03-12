@@ -137,8 +137,6 @@ app.on('text', function(ctx) {
   var fri = /(пятница|пт.)/;
   var sat = /(суббота|сб.)/;
   var sun = /(воскресенье|вс.)/;
-  var day = /(день|сегодня)/;
-  var wee = /(неделю)/;
 
   var today = new Date(); // Сегодняшняя дата
   var Days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
@@ -149,27 +147,30 @@ app.on('text', function(ctx) {
   Days.splice(Days.indexOf("sunday"),1);
   Days.push("sunday");
 
-  var Q1 = /расписание сегодня|расписание(?= на| в)|какие(?= предметы сегодня| уроки сегодня)|какие(?= предметы(?= в)| уроки(?= в))/;
+  var day = /(день|сегодня)/.test(txt);
+  var wee = /(неделю)/.test(txt);
+
+  var Q1 = /расписание сегодня|расписание(?= на| в)|какие(?= предметы сегодня| уроки сегодня)|какие(?= предметы(?= в)| уроки(?= в))/.test(txt);
   //var Q2 = ;
   var Answer = "";
 
   console.log(txt); // Выводим в консоль значение переменной txt, которая содержит значение свойства "text" (маленькие буквы) из объекта контекста "ctx"
 
-  if (Q1.test(txt)) {
-    if (wee.test(txt)) {
+  if (Q1) {
+    if (wee) {
       var Answer = "Расписание на неделю...\n";
       for ( var i = 0; i < Days.length; i++ ) {
         Answer = Answer + getScheduleDay(Days[i]) + "\n";
       }
     } else {
       Days = [];
-      if (mon.test(txt)||day.test(txt)&&Day==="monday") { Days.push("monday"); }
-      if (tue.test(txt)||day.test(txt)&&Day==="tuesday") { Days.push("tuesday"); }
-      if (wed.test(txt)||day.test(txt)&&Day==="wednesday") { Days.push("wednesday"); }
-      if (thu.test(txt)||day.test(txt)&&Day==="thursday") { Days.push("thursday"); }
-      if (fri.test(txt)||day.test(txt)&&Day==="friday") { Days.push("friday"); }
-      if (sat.test(txt)||day.test(txt)&&Day==="saturday") { Days.push("saturday"); }
-      if (sun.test(txt)||day.test(txt)&&Day==="sunday") { Days.push("sunday"); }
+      if (mon.test(txt)||day&&Day==="monday"   ) { Days.push("monday");    }
+      if (tue.test(txt)||day&&Day==="tuesday"  ) { Days.push("tuesday");   }
+      if (wed.test(txt)||day&&Day==="wednesday") { Days.push("wednesday"); }
+      if (thu.test(txt)||day&&Day==="thursday" ) { Days.push("thursday");  }
+      if (fri.test(txt)||day&&Day==="friday"   ) { Days.push("friday");    }
+      if (sat.test(txt)||day&&Day==="saturday" ) { Days.push("saturday");  }
+      if (sun.test(txt)||day&&Day==="sunday"   ) { Days.push("sunday");    }
 
       if (Days.length > 0) {
         var Answer = "Вот расписание на ";
