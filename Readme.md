@@ -25,7 +25,7 @@ Telegram Bot API App is built using MEAN stack (mainly Node)
 ### Запуск терминального клиента
 * `PuTTY\PUTTY.EXE`
 
-## Команды в консоли PuTTY на сервере 1
+## Команды в консоли PuTTY на сервере
 * `cd apps/Bot` перейти в папку Telegram Bot App
 * `sudo git pull origin master` получить последние обновления с git
 * `npm install` to resolve dependencies
