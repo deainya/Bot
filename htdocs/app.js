@@ -5,13 +5,13 @@ var app         = new TelegramBot(Config.bot_token);
 
 app.command('start', (ctx) => {
   console.log('start', ctx.from);
-  ctx.reply('Да, давай начнём...');
-  ctx.reply('Меня зовут c3po');
+  ctx.reply('Уже начинаем');
+  ctx.reply('Я Алиса!');
 });
 
 app.command('help', (ctx) => {
   console.log('help', ctx.from);
-  ctx.reply('Помоги себе сам, будь умничкой!');
+  ctx.reply('Пораскину мозгами чем тебе помочь');
 });
 
 app.startPolling();
