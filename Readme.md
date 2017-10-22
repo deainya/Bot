@@ -6,6 +6,7 @@ Telegram Bot API App is built using MEAN stack (mainly Node)
 * Express
 * Angular
 * Node
+* `npm install` to resolve dependencies
 
 ## Структура папок проекта git
 * `conf` настройки web сервера
@@ -28,8 +29,7 @@ Telegram Bot API App is built using MEAN stack (mainly Node)
 ## Команды в консоли PuTTY на сервере
 * `cd apps/Bot` перейти в папку Telegram Bot App
 * `sudo git pull origin master` получить последние обновления с git
-* `npm install` to resolve dependencies
+* `node /opt/bitnami/nodejs/bin/node /opt/bitnami/nodejs/bin/forever stop htdocs/app.js` останов приложения на сервере, запущенного на постоянной основе
+* `node /opt/bitnami/nodejs/bin/node /opt/bitnami/nodejs/bin/forever start htdocs/app.js` запуск приложения на сервере на постоянной основе
 * `node htdocs/app.js` ручной запуск приложения на сервере
 * `CTRL+C` ручной останов приложения на сервере (только для приложения, запущенного вручную)
-* `node /opt/bitnami/nodejs/bin/node /opt/bitnami/nodejs/bin/forever start htdocs/app.js` запуск приложения на постоянной основе
-* `node /opt/bitnami/nodejs/bin/node /opt/bitnami/nodejs/bin/forever stop htdocs/app.js` останов приложения, запущенного на постоянной основе
