@@ -72,7 +72,7 @@ app.command('help', (ctx) => {
   ctx.reply('Пораскину мозгами чем тебе помочь');
 });
 app.on('text', function(ctx) {
-  var txt = ctx.message.text.toLowerCase(); // Заглавные буквы свойства "text" из объекта контекста "ctx" делает маленткими
+  var txt = ctx.message.text.toLowerCase(); // Заглавные буквы свойства "text" из объекта контекста "ctx" делает маленькими
   console.log(txt); // Выводим в консоль значение переменной txt (текст сообщения пользователя), которая содержит значение свойства "text" (маленькие буквы) из объекта контекста "ctx" (контекст послания пользователя)
 
   var mon =     /(понедельник|пн.|пн$)/.test(txt);
@@ -89,8 +89,8 @@ app.on('text', function(ctx) {
   var Days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
   var Day = Days[today.getDay()]; // Сегодняшний день недели (today.getDay() возвращает значение от 0 до 6)
   // Переносим Вс. в хвост массива
-  Days.splice(Days.indexOf("sunday"),1); // Удаляем элемент с названием Вс.: indexOf - индекс элемента; splice(index, cnt) удалить элементы начиная с индекса index в количестве cnt
-  Days.push("sunday"); // Добавляем элемент в хвост массива
+  Days.splice(Days.indexOf("saturday","sunday"),1); // Удаляем элемент с названием Вс.: indexOf - индекс элемента; splice(index, cnt) удалить элементы начиная с индекса index в количестве cnt
+  Days.push("saturday","sunday"); // Добавляем элемент в хвост массива
 
 
   var Q1 = /меню сегодня|меню(?= на| в)|что(?= в меню сегодня| за меню сегодня)|какое(?= меню(?= в))/.test(txt);
@@ -126,7 +126,7 @@ app.on('text', function(ctx) {
         for ( var i = 0; i < Days.length; i++ ) {
           // Самописные функции tdotw, getMenuDay
           //Answer = Answer + tdotw(Days[i]) + ":\n";
-          Answer = Answer + getScheduleDay(Days[i]) + "\n";
+          Answer = Answer + getMenuDay(Days[i]) + "\n";
         }
       } else { Answer = "Упс... Не знаю, что и сказать, мастер Люк"; }
     }
