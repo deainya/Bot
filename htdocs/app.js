@@ -86,7 +86,7 @@ app.on('text', function(ctx) {
   var week = /(неделю)/.test(txt);
 
   var today = new Date(); // Сегодняшняя дата
-  var Days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+  var Days = ["sunday","monday","tuesday","wednesday","thursday","friday"];
   var Day = Days[today.getDay()]; // Сегодняшний день недели (today.getDay() возвращает значение от 0 до 6)
   // Переносим Вс. в хвост массива
   Days.splice(Days.indexOf("saturday","sunday"),1); // Удаляем элемент с названием Вс.: indexOf - индекс элемента; splice(index, cnt) удалить элементы начиная с индекса index в количестве cnt
@@ -151,7 +151,7 @@ app.on('text', function(ctx) {
         for ( var i = 0; i < Days.length; i++ ) {
           // Самописные функции tdotw, getMenuDay
           //Answer = Answer + tdotw(Days[i]) + ":\n";
-          Answer = Answer + getScheduleDay(Days[i]) + "\n";
+          Answer = Answer + getMenuDay(Days[i]) + "\n";
         }
       } else { Answer = "Упс... Не знаю, что и сказать, мастер Люк"; }
     }
