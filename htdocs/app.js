@@ -57,7 +57,7 @@ var tdotw = function(day_of_the_week) {
                                      }
                                      return s;
                    case "saturday":  return "суббота:\nНе кормят...Печалька";
-                
+
                    case "sunday":    return "воскресенье:\nНе кормят...Печалька";
                    default:          return "";
                  }
@@ -91,9 +91,6 @@ app.on('text', function(ctx) {
   var Day = Days[today.getDay()]; // Сегодняшний день недели (today.getDay() возвращает значение от 0 до 6)
   Days.splice(Days.indexOf("saturday","sunday"),2); // Удаляем элемент с названием Вс.: indexOf - индекс элемента; splice(index, cnt) удалить элементы начиная с индекса index в количестве cnt,  splice- сращивание
   Days.push("saturday","sunday"); // Добавляем элемент в хвост массива
-
- else {
-    ctx.reply( 'Не понял вас, мастер Люк' );
-  };
+});
 
 app.startPolling();
