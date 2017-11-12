@@ -54,9 +54,7 @@ var tdotw = function(day_of_the_week) {
                                        s = s + menu.friday[i].dish +'\n';
                                      }
                                      return s;
-                   case "saturday":   var s = "суббота:\nНе кормят...Печалька";
-
-                                     return "";
+                   case "saturday":  return "суббота:\nНе кормят...Печалька";
                    case "sunday":    return "воскресенье:\nНе кормят...Печалька";
                    default:          return "";
                  }
@@ -88,12 +86,11 @@ app.on('text', function(ctx) {
   var today = new Date(); // Сегодняшняя дата
   var Days = ["sunday","monday","tuesday","wednesday","thursday","friday"];
   var Day = Days[today.getDay()]; // Сегодняшний день недели (today.getDay() возвращает значение от 0 до 6)
-  // Переносим Вс. в хвост массива
-  Days.splice(Days.indexOf("saturday","sunday"),1); // Удаляем элемент с названием Вс.: indexOf - индекс элемента; splice(index, cnt) удалить элементы начиная с индекса index в количестве cnt
+  Days.splice(Days.indexOf("saturday","sunday"),2); // Удаляем элемент с названием Вс.: indexOf - индекс элемента; splice(index, cnt) удалить элементы начиная с индекса index в количестве cnt
   Days.push("saturday","sunday"); // Добавляем элемент в хвост массива
 
 
-  var Q1 = /меню сегодня|меню(?= на| в)|что(?= в меню сегодня| за меню сегодня)|какое(?= меню(?= в))/.test(txt);
+  var Q1 = /меню сегодня|меню(?= на| в)|что(?= в меню | за меню)|какое(?= меню(?= в))/.test(txt);
   var Q2 = /есть ли|есть(?= у меня)|меню(?= сегодня|)/.test(txt);
   var Answer = "";
 
@@ -149,8 +146,7 @@ app.on('text', function(ctx) {
       if (Days.length > 0) {
         var Answer = "Вот меню на ";
         for ( var i = 0; i < Days.length; i++ ) {
-          // Самописные функции tdotw, getMenuDay
-          //Answer = Answer + tdotw(Days[i]) + ":\n";
+      
           Answer = Answer + getMenuDay(Days[i]) + "\n";
         }
       } else { Answer = "Упс... Не знаю, что и сказать, мастер Люк"; }
