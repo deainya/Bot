@@ -100,7 +100,7 @@ app.on('text', function(ctx) {
   if (day) {
     ctx.reply( getMenuDay(Day) );
   } else if (mon) {
-    ctx.reply( 'Тут должно быть что-то про понедельник' );
+    ctx.reply( getMenuDay(Monday) );
   } else {
     ctx.reply( 'Ой' );
   }
