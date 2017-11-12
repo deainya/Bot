@@ -57,7 +57,7 @@ var tdotw = function(day_of_the_week) {
                                      }
                                      return s;
                    case "saturday":  return "суббота:\nНе кормят...Печалька";
-                   default:          return "";
+                
                    case "sunday":    return "воскресенье:\nНе кормят...Печалька";
                    default:          return "";
                  }
