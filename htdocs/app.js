@@ -114,7 +114,7 @@ app.on('text', function(ctx) {
   } else if (sun) {
     ctx.reply( getMenuDay("sunday") );
   } else if (week) {
-    ctx.reply( getMenuDay(menu) );       
+    ctx.reply( getMenuDay(Days) );
   } else {
     ctx.reply( 'Ой' );
   }
