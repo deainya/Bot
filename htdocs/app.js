@@ -1,6 +1,8 @@
+// Подключаем библиотеки и внешние скрипты
 var TelegramBot = require('telegraf');
 var Config      = require('./config');
 
+// Создаем объект приложения бота телеграмм
 var app         = new TelegramBot(Config.bot_token);
 
 var menu = {     monday :   [ {dish:'Борщ'},
@@ -21,15 +23,15 @@ var menu = {     monday :   [ {dish:'Борщ'},
                  saturday:  [],
                  sunday:    []
                };
-
+// Translate Day Of The Week (tdotw)
 var tdotw = function(day_of_the_week) {
                  var days = {"monday":"понедельник", "tuesday":"вторник", "wednesday":"среда", "thursday":"четверг", "friday":"пятница", "saturday":"суббота", "sunday":"воскресенье"};
                  return days[day_of_the_week];
                }
-
+// "взять день меню"
                var getMenuDay = function(day_of_the_week) {
                  switch(day_of_the_week){
-                   case "monday":    var s = "понедельник:\n";
+                   case "monday":    var s = "понедельник:\n";           // case- случай, switch- переключать,length-длина, default- по умолчанию
                                      for ( var i = 0; i < menu.monday.length; i++ ) {
                                        s = s + menu[day_of_the_week][i].dish + '\n';
                                      }
@@ -87,7 +89,7 @@ app.on('text', function(ctx) {
   var today = new Date(); // Сегодняшняя дата
   var Days = ["sunday","monday","tuesday","wednesday","thursday","friday"];
   var Day = Days[today.getDay()]; // Сегодняшний день недели (today.getDay() возвращает значение от 0 до 6)
-  Days.splice(Days.indexOf("saturday","sunday"),2); // Удаляем элемент с названием Вс.: indexOf - индекс элемента; splice(index, cnt) удалить элементы начиная с индекса index в количестве cnt
+  Days.splice(Days.indexOf("saturday","sunday"),2); // Удаляем элемент с названием Вс.: indexOf - индекс элемента; splice(index, cnt) удалить элементы начиная с индекса index в количестве cnt,  splice- сращивание
   Days.push("saturday","sunday"); // Добавляем элемент в хвост массива
 
  else {
