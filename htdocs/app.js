@@ -98,7 +98,7 @@ app.on('text', function(ctx) {
   Days.push("sunday"); // Добавляем элемент в хвост массива
 
   if (day) {
-    ctx.reply( function(day_of_the_week) );
+    ctx.reply( getMenuDay(Day) );
   } else if (mon) {
     ctx.reply( 'Тут должно быть что-то про понедельник' );
   } else {
