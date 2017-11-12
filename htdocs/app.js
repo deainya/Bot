@@ -85,6 +85,9 @@ app.on('text', function(ctx) {
   var sun =     /(воскресенье|вс.|вс$)/.test(txt);
   var day = /(день|сегодня)/.test(txt);
   var week = /(неделю)/.test(txt);
+  console.log(mon);
+  console.log(tue);
+
 
   var today = new Date(); // Сегодняшняя дата
   var Days = ["sunday","monday","tuesday","wednesday","thursday","friday"];
