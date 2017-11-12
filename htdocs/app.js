@@ -89,7 +89,12 @@ app.on('text', function(ctx) {
   var day = /(день|сегодня)/.test(txt);
   var week = /(неделю)/.test(txt);
 
-
+  if (mon) {
+    ctx.reply( 'Тут должно быть что-то про понедельник' );
+  }
+  else {
+    ctx.reply( 'Ой' );
+  }
 
 /*
   var today = new Date(); // Сегодняшняя дата
