@@ -88,7 +88,7 @@ app.on('text', function(ctx) {
   var sat = /(суббота|субботу|сб.|сб$)/.test(txt);
   var sun =     /(воскресенье|вс.|вс$)/.test(txt);
   var day = /(день|сегодня)/.test(txt);
-  var week = /(неделю)/.test(txt);
+  var week = /(неделя)/.test(txt);
 
   var today = new Date(); // Сегодняшняя дата
   var Days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
@@ -114,7 +114,7 @@ app.on('text', function(ctx) {
   } else if (sun) {
     ctx.reply( getMenuDay("sunday") );
   } else if (week) {
-    ctx.reply( getMenuDay(Days) );
+    ctx.reply( getMenuDay("monday","tuesday","wednesday","thursday","friday","saturday","sunday") );
   } else {
     ctx.reply( 'Ой' );
   }
