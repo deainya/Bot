@@ -55,6 +55,7 @@ var tdotw = function(day_of_the_week) {
                                      }
                                      return s;
                    case "saturday":  return "суббота:\nНе кормят...Печалька";
+                   default:          return "";
                    case "sunday":    return "воскресенье:\nНе кормят...Печалька";
                    default:          return "";
                  }
@@ -89,71 +90,8 @@ app.on('text', function(ctx) {
   Days.splice(Days.indexOf("saturday","sunday"),2); // Удаляем элемент с названием Вс.: indexOf - индекс элемента; splice(index, cnt) удалить элементы начиная с индекса index в количестве cnt
   Days.push("saturday","sunday"); // Добавляем элемент в хвост массива
 
-
-  var Q1 = /меню сегодня|меню(?= на| в)|что(?= в меню | за меню)|какое(?= меню(?= в))/.test(txt);
-  var Q2 = /есть ли|есть(?= у меня)|меню(?= сегодня|)/.test(txt);
-  var Answer = "";
-
-  if (Q1) {
-    if (week) {
-      var Answer = "Меню на неделю\n";
-      for ( var i = 0; i < Days.length; i++ ) {
-        Answer = Answer + getMenuDay(Days[i]) + "\n";
-      }
-    } else {
-      Days = [];
-      /* || - логическое "или" (логическое сложение), && - логическое "и" (логическое умножение)
-      false||false = false
-      true ||false = true
-      false||true  = true
-      true ||true  = true
-      false&&false = false
-      true &&false = false
-      false&&true  = false
-      true &&true  = true */
-      if (mon||day&&Day==="monday"   ) { Days.push("monday");    }
-      if (tue||day&&Day==="tuesday"  ) { Days.push("tuesday");   }
-      if (wed||day&&Day==="wednesday") { Days.push("wednesday"); }
-      if (thu||day&&Day==="thursday" ) { Days.push("thursday");  }
-      if (fri||day&&Day==="friday"   ) { Days.push("friday");    }
-      if (sat||day&&Day==="saturday" ) { Days.push("saturday");  }
-      if (sun||day&&Day==="sunday"   ) { Days.push("sunday");    }
-      if (Days.length > 0) {
-        var Answer = "Вот меню на ";
-        for ( var i = 0; i < Days.length; i++ ) {
-          // Самописные функции tdotw, getMenuDay
-          //Answer = Answer + tdotw(Days[i]) + ":\n";
-          Answer = Answer + getMenuDay(Days[i]) + "\n";
-        }
-      } else { Answer = "Упс... Не знаю, что и сказать, мастер Люк"; }
-    }
-    ctx.reply( Answer ); // Шлём готовый ответ пользователю
-  } else if (Q2) {
-    if (week) {
-      var Answer = "Меню на неделю имеется\n";
-      for ( var i = 0; i < Days.length; i++ ) {
-        Answer = Answer + getMenuDay(Days[i]) + "\n";
-      }
-    } else {
-      Days = [];
-      if (mon||day&&Day==="monday"   ) { Days.push("monday");    }
-      if (tue||day&&Day==="tuesday"  ) { Days.push("tuesday");   }
-      if (wed||day&&Day==="wednesday") { Days.push("wednesday"); }
-      if (thu||day&&Day==="thursday" ) { Days.push("thursday");  }
-      if (fri||day&&Day==="friday"   ) { Days.push("friday");    }
-      if (sat||day&&Day==="saturday" ) { Days.push("saturday");  }
-      if (sun||day&&Day==="sunday"   ) { Days.push("sunday");    }
-      if (Days.length > 0) {
-        var Answer = "Вот меню на ";
-        for ( var i = 0; i < Days.length; i++ ) {
-      
-          Answer = Answer + getMenuDay(Days[i]) + "\n";
-        }
-      } else { Answer = "Упс... Не знаю, что и сказать, мастер Люк"; }
-    }
-  }  else {
+ else {
     ctx.reply( 'Не понял вас, мастер Люк' );
-  }
-});
+  };
 
 app.startPolling();
