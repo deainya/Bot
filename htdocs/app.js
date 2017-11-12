@@ -32,6 +32,7 @@ var tdotw = function(day_of_the_week) {
 
 // "взять день меню"
 var getMenuDay = function(day_of_the_week) {
+  console.log("я в функции");
   switch(day_of_the_week) {
     case "monday":    var s = "понедельник:\n"; // case- случай, switch- переключать,length-длина, default- по умолчанию
                       for ( var i = 0; i < menu.monday.length; i++ ) {
@@ -40,22 +41,22 @@ var getMenuDay = function(day_of_the_week) {
                       return s;
     case "tuesday":   var s = "вторник:\n ";
                       for ( var i = 0; i < menu.tuesday.length; i++ ) {
-                        s = s + schedule.tuesday[i].dish +'\n';
+                        s = s + menu[day_of_the_week][i].dish +'\n';
                       }
                       return s;
     case "wednesday": var s = "среда:\n";
                       for ( var i = 0; i < menu.wednesday.length; i++ ) {
-                        s = s + schedule.wednesday[i].dish +'\n';
+                        s = s + menu[day_of_the_week][i].dish +'\n';
                       }
                       return s;
     case "thursday":  var s = "четверг:\n";
                       for ( var i = 0; i < menu.thursday.length; i++ ) {
-                        s = s + menu.thursday[i].dish + '\n';
+                        s = s + menu[day_of_the_week][i].dish + '\n';
                       }
                       return s;
     case "friday":    var s = "пятницу:\n";
                       for ( var i = 0; i < menu.friday.length; i++ ) {
-                        s = s + menu.friday[i].dish +'\n';
+                        s = s + menu[day_of_the_week][i].dish +'\n';
                       }
                       return s;
     case "saturday":  return "суббота:\nНе кормят...Печалька";
@@ -89,10 +90,18 @@ app.on('text', function(ctx) {
   var day = /(день|сегодня)/.test(txt);
   var week = /(неделю)/.test(txt);
 
-  if (mon) {
+  var today = new Date(); // Сегодняшняя дата
+  var Days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+  var Day = Days[today.getDay()]; // Сегодняшний день недели (today.getDay() возвращает значение от 0 до 6)
+  // Переносим Вс. в хвост массива
+  Days.splice(Days.indexOf("sunday"),1); // Удаляем элемент с названием Вс.: indexOf - индекс элемента; splice(index, cnt) удалить элементы начиная с индекса index в количестве cnt
+  Days.push("sunday"); // Добавляем элемент в хвост массива
+
+  if (day) {
+    ctx.reply( function(day_of_the_week) );
+  } else if (mon) {
     ctx.reply( 'Тут должно быть что-то про понедельник' );
-  }
-  else {
+  } else {
     ctx.reply( 'Ой' );
   }
 
