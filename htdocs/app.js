@@ -101,6 +101,20 @@ app.on('text', function(ctx) {
     ctx.reply( getMenuDay(Day) );
   } else if (mon) {
     ctx.reply( getMenuDay("monday") );
+  } else if (tue) {
+    ctx.reply( getMenuDay("tuesday") );
+  } else if (wed) {
+    ctx.reply( getMenuDay("wednesday") );
+  } else if (thu) {
+    ctx.reply( getMenuDay("thursday") );
+  } else if (fri) {
+    ctx.reply( getMenuDay("friday") );
+  } else if (sat) {
+    ctx.reply( getMenuDay("saturday") );
+  } else if (sun) {
+    ctx.reply( getMenuDay("sunday") );
+  } else if (week) {
+    ctx.reply( getMenuDay(menu) );       
   } else {
     ctx.reply( 'Ой' );
   }
