@@ -36,8 +36,19 @@ var getMenuDay = function(day_of_the_week) {
   switch(day_of_the_week) {
     case "monday":    var s = "понедельник:\n"; // case- случай, switch- переключать,length-длина, default- по умолчанию
                       for ( var i = 0; i < menu.monday.length; i++ ) {
-                        s = s + menu[day_of_the_week][i].dish + '\n';
+                        s = s + menu[day_of_the_week][i].dish + '\n'; //menu["monday"][i].dish
                       }
+                      //'Борщ '+'Рыбная запеканка '+'Компот из шиповника' = 'Борщ Рыбная запеканка Компот из шиповника'
+                      //'Борщ'+'\n'+'Рыбная запеканка'+'\n'+'Компот из шиповника' = 'Борщ
+                      //                                                             Рыбная запеканка
+                      //                                                             Компот из шиповника'
+                      //  menu["monday"][0].dish+' '+menu["monday"][1].dish+' '+menu["monday"][2].dish = 'Борщ Рыбная запеканка Компот из шиповника'
+
+                      //  s = 'ПН: ' + menu["monday"][0].dish+' '+menu["monday"][1].dish+' '+menu["monday"][2].dish + ' '
+                      //  'ВТ: ' + menu["tuesday"][0].dish+' '+menu["tuesday"][1].dish+' '+menu["tuesday"][2].dish
+
+                      //'Понедельник '+'Вторник '+'Среда '+'Чт '+'Пт '+'Сб '+'ПОФИГ ЧТО В СТРОКЕ ХОТЬ МЕНЮ ПИШИ ' = 'Понедельник Вторник Среда'
+
                       return s;
     case "tuesday":   var s = "вторник:\n ";
                       for ( var i = 0; i < menu.tuesday.length; i++ ) {
@@ -114,7 +125,13 @@ app.on('text', function(ctx) {
   } else if (sun) {
     ctx.reply( getMenuDay("sunday") );
   } else if (week) {
-    ctx.reply( getMenuDay("monday,tuesday,wednesday,thursday,friday,saturday,sunday") );
+    ctx.reply( getMenuDay("monday")
+    ctx.reply( getMenuDay("tuesday")
+    ctx.reply( getMenuDay("wednesday")
+    ctx.reply( getMenuDay("thursday")
+    ctx.reply( getMenuDay("friday")
+    ctx.reply( getMenuDay("saturday")
+    ctx.reply( getMenuDay("sunday") );
   } else {
     ctx.reply( 'Ой' );
   }
