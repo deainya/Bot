@@ -125,12 +125,12 @@ app.on('text', function(ctx) {
   } else if (sun) {
     ctx.reply( getMenuDay("sunday") );
   } else if (week) {
-    ctx.reply( getMenuDay("monday")
-    ctx.reply( getMenuDay("tuesday")
-    ctx.reply( getMenuDay("wednesday")
-    ctx.reply( getMenuDay("thursday")
-    ctx.reply( getMenuDay("friday")
-    ctx.reply( getMenuDay("saturday")
+    ctx.reply( getMenuDay("monday") );
+    ctx.reply( getMenuDay("tuesday") );
+    ctx.reply( getMenuDay("wednesday") );
+    ctx.reply( getMenuDay("thursday") );
+    ctx.reply( getMenuDay("friday") );
+    ctx.reply( getMenuDay("saturday") );
     ctx.reply( getMenuDay("sunday") );
   } else {
     ctx.reply( 'Ой' );
