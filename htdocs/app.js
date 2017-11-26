@@ -34,7 +34,7 @@ var tdotw = function(day_of_the_week) {
 var getMenuDay = function(day_of_the_week) {
   console.log("я в функции");
   switch(day_of_the_week) {
-    case "monday":    var s = "понедельник:\n"; // case- случай, switch- переключать,length-длина, default- по умолчанию
+    case "monday":    var s = "Понедельник:\n"; // case- случай, switch- переключать,length-длина, default- по умолчанию
                       for ( var i = 0; i < menu.monday.length; i++ ) {
                         s = s + menu[day_of_the_week][i].dish + '\n'; //menu["monday"][i].dish
                       }
@@ -50,28 +50,28 @@ var getMenuDay = function(day_of_the_week) {
                       //'Понедельник '+'Вторник '+'Среда '+'Чт '+'Пт '+'Сб '+'ПОФИГ ЧТО В СТРОКЕ ХОТЬ МЕНЮ ПИШИ ' = 'Понедельник Вторник Среда'
 
                       return s;
-    case "tuesday":   var s = "вторник:\n ";
+    case "tuesday":   var s = "Вторник:\n ";
                       for ( var i = 0; i < menu.tuesday.length; i++ ) {
                         s = s + menu[day_of_the_week][i].dish +'\n';
                       }
                       return s;
-    case "wednesday": var s = "среда:\n";
+    case "wednesday": var s = "Среда:\n";
                       for ( var i = 0; i < menu.wednesday.length; i++ ) {
                         s = s + menu[day_of_the_week][i].dish +'\n';
                       }
                       return s;
-    case "thursday":  var s = "четверг:\n";
+    case "thursday":  var s = "Четверг:\n";
                       for ( var i = 0; i < menu.thursday.length; i++ ) {
                         s = s + menu[day_of_the_week][i].dish + '\n';
                       }
                       return s;
-    case "friday":    var s = "пятницу:\n";
+    case "friday":    var s = "Пятница:\n";
                       for ( var i = 0; i < menu.friday.length; i++ ) {
                         s = s + menu[day_of_the_week][i].dish +'\n';
                       }
                       return s;
-    case "saturday":  return "суббота:\nНе кормят...Печалька";
-    case "sunday":    return "воскресенье:\nНе кормят...Печалька";
+    case "saturday":  return "Суббота:\nНе кормят...Печалька";
+    case "sunday":    return "Воскресенье:\nНе кормят...Печалька";
     default:          return "";
   }
 }
@@ -99,7 +99,7 @@ app.on('text', function(ctx) {
   var sat = /(суббота|субботу|сб.|сб$)/.test(txt);
   var sun =     /(воскресенье|вс.|вс$)/.test(txt);
   var day = /(день|сегодня)/.test(txt);
-  var week = /(неделя)/.test(txt);
+  var week = /(неделя|неделю)/.test(txt);
 
   var today = new Date(); // Сегодняшняя дата
   var Days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
@@ -125,7 +125,7 @@ app.on('text', function(ctx) {
   } else if (sun) {
     ctx.reply( getMenuDay("sunday") );
   } else if (week) {
-    ctx.reply( getMenuDay("monday")+"\n"+getMenuDay("tuesday")+"\n"+getMenuDay("wednesday")+"\n"+getMenuDay("thursday")+"\n"+getMenuDay("friday")+"\n"+getMenuDay("saturday")+"\n"+getMenuDay("sunday") );
+    ctx.reply( getMenuDay("monday")+"\n"+getMenuDay("tuesday")+"\n"+getMenuDay("wednesday")+"\n"+getMenuDay("thursday")+"\n"+getMenuDay("friday")+"\n"+getMenuDay("saturday")+"\n"+"\n"+getMenuDay("sunday") );
     /*ctx.reply( getMenuDay("tuesday") );
     ctx.reply( getMenuDay("wednesday") );
     ctx.reply( getMenuDay("thursday") );
