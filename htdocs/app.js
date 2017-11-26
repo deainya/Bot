@@ -125,7 +125,7 @@ app.on('text', function(ctx) {
   } else if (sun) {
     ctx.reply( getMenuDay("sunday") );
   } else if (week) {
-    ctx.reply( getMenuDay("monday")+"\n"+getMenuDay("tuesday")+"\n"+getMenuDay("wednesday")+"\n"+getMenuDay("thursday")+"\n"+getMenuDay("friday")+"\n"+getMenuDay("saturday")+"\n"+getMenuDay("sunday")) );
+    ctx.reply( getMenuDay("monday")+"\n"+getMenuDay("tuesday")+"\n"+getMenuDay("wednesday")+"\n"+getMenuDay("thursday")+"\n"+getMenuDay("friday")+"\n"+getMenuDay("saturday")+"\n"+getMenuDay("sunday") );
     /*ctx.reply( getMenuDay("tuesday") );
     ctx.reply( getMenuDay("wednesday") );
     ctx.reply( getMenuDay("thursday") );
