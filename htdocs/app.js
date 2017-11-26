@@ -125,13 +125,24 @@ app.on('text', function(ctx) {
   } else if (sun) {
     ctx.reply( getMenuDay("sunday") );
   } else if (week) {
-    ctx.reply( getMenuDay("monday") );
-    ctx.reply( getMenuDay("tuesday") );
+    ctx.reply( getMenuDay("monday")+"\n"+getMenuDay("tuesday")+"\n"+getMenuDay("wednesday")+"\n"+getMenuDay("thursday")+"\n"+getMenuDay("friday")+"\n"+getMenuDay("saturday")+"\n"+getMenuDay("sunday")) );
+    /*ctx.reply( getMenuDay("tuesday") );
     ctx.reply( getMenuDay("wednesday") );
     ctx.reply( getMenuDay("thursday") );
     ctx.reply( getMenuDay("friday") );
     ctx.reply( getMenuDay("saturday") );
-    ctx.reply( getMenuDay("sunday") );
+    ctx.reply( getMenuDay("sunday") );*/
+
+    //sssssa = "привет";
+    //sssssb = "букет";
+    //sssssc = sssssa +" "+ sssssb = "привет букет";
+
+    /*getSchedule(1) => "привет"
+    getSchedule(2) => "букет"
+    ctx.reply(getSchedule(1)+" "+getSchedule(2));*/
+
+    //ctx.reply("привет"+" "+"букет"+"\n"+getMenuDay("monday"));
+
   } else {
     ctx.reply( 'Ой' );
   }
