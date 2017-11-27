@@ -50,7 +50,7 @@ var getMenuDay = function(day_of_the_week) {
                       //'Понедельник '+'Вторник '+'Среда '+'Чт '+'Пт '+'Сб '+'ПОФИГ ЧТО В СТРОКЕ ХОТЬ МЕНЮ ПИШИ ' = 'Понедельник Вторник Среда'
 
                       return s;
-    case "tuesday":   var s = "Вторник:\n ";
+    case "tuesday":   var s = "Вторник:\n";
                       for ( var i = 0; i < menu.tuesday.length; i++ ) {
                         s = s + menu[day_of_the_week][i].dish +'\n';
                       }
