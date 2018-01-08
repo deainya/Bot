@@ -1,5 +1,3 @@
-
-
 // Подключаем библиотеки и внешние скрипты
 var TelegramBot = require('telegraf');
 var Config      = require('./config');
