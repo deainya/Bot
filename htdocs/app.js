@@ -77,7 +77,7 @@ var tdotw = function(day_of_the_week) {
 }
 
 // "Получить расписание по дню недели"
-var getScheduleInfoDay = function(state, day_of_the_week) {
+var getScheduleDay = function(state, day_of_the_week) {
   switch(state){
     case 1:
       switch(day_of_the_week){
