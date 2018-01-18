@@ -116,51 +116,51 @@ var getScheduleDay = function(state, day_of_the_week) {
       }
     case 2:
       switch(day_of_the_week){
-        case "monday":    var s = 'в понедельник в '+ schedule[day_of_the_week][0].time + '\n';
+        case "monday":    var s = 'в понедельник в '+ schedule[day_of_the_week][0].time;
                           return s;
-        case "tuesday":   var s = 'во вторник в '+ schedule[day_of_the_week][0].time + '\n';
+        case "tuesday":   var s = 'во вторник в '+ schedule[day_of_the_week][0].time;
                           return s;
-        case "wednesday": var s = 'в среду в '+ schedule[day_of_the_week][0].time + '\n';
+        case "wednesday": var s = 'в среду в '+ schedule[day_of_the_week][0].time;
                           return s;
-        case "thursday":  var s = 'в четверг в '+ schedule[day_of_the_week][0].time + '\n';
+        case "thursday":  var s = 'в четверг в '+ schedule[day_of_the_week][0].time;
                           return s;
-        case "friday":    var s = 'в пятницу в '+ schedule[day_of_the_week][0].time + '\n';
+        case "friday":    var s = 'в пятницу в '+ schedule[day_of_the_week][0].time;
                           return s;
-        case "saturday":  var s = 'в субботу в '+ schedule[day_of_the_week][0].time + '\n';
+        case "saturday":  var s = 'в субботу в '+ schedule[day_of_the_week][0].time;
                           return s;
         case "sunday":    return "в воскресенье нет уроков";
         default:          return "";
       }
     case 3:
       switch(day_of_the_week){
-        case "monday":    var s = 'в понедельник в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end + '\n';
+        case "monday":    var s = 'в понедельник в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end;
                           return s;
-        case "tuesday":   var s = 'во вторник в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end + '\n';
+        case "tuesday":   var s = 'во вторник в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end;
                           return s;
-        case "wednesday": var s = 'в среду в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end + '\n';
+        case "wednesday": var s = 'в среду в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end;
                           return s;
-        case "thursday":  var s = 'в четверг в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end + '\n';
+        case "thursday":  var s = 'в четверг в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end;
                           return s;
-        case "friday":    var s = 'в пятницу в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end + '\n';
+        case "friday":    var s = 'в пятницу в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end;
                           return s;
-        case "saturday":  var s = 'в субботу в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end + '\n';
+        case "saturday":  var s = 'в субботу в '+ schedule[day_of_the_week][schedule[day_of_the_week].length-1].end;
                           return s;
         case "sunday":    return "в воскресенье нет уроков";
         default:          return "";
       }
     case 4:
       switch(day_of_the_week){
-        case "monday":    var s = 'в понедельник '+ schedule[day_of_the_week].length + ' шт.\n';
+        case "monday":    var s = 'в понедельник '+ schedule[day_of_the_week].length + ' шт.';
                           return s;
-        case "tuesday":   var s = 'во вторник '+ schedule[day_of_the_week].length + ' шт.\n';
+        case "tuesday":   var s = 'во вторник '+ schedule[day_of_the_week].length + ' шт.';
                           return s;
-        case "wednesday": var s = 'в среду '+ schedule[day_of_the_week].length + ' шт.\n';
+        case "wednesday": var s = 'в среду '+ schedule[day_of_the_week].length + ' шт.';
                           return s;
-        case "thursday":  var s = 'в четверг '+ schedule[day_of_the_week].length + ' шт.\n';
+        case "thursday":  var s = 'в четверг '+ schedule[day_of_the_week].length + ' шт.';
                           return s;
-        case "friday":    var s = 'в пятницу '+ schedule[day_of_the_week].length + ' шт.\n';
+        case "friday":    var s = 'в пятницу '+ schedule[day_of_the_week].length + ' шт.';
                           return s;
-        case "saturday":  var s = 'в субботу '+ schedule[day_of_the_week].length + ' шт.\n';
+        case "saturday":  var s = 'в субботу '+ schedule[day_of_the_week].length + ' шт.';
                           return s;
         case "sunday":    return "в воскресенье нет уроков";
         default:          return "";
@@ -194,13 +194,13 @@ app.on('text', function(ctx) {
   console.log(txt); // Выводим в консоль значение переменной txt (текст сообщения пользователя), которая содержит значение свойства "text" (маленькие буквы) из объекта контекста "ctx" (контекст послания пользователя)
 
   //Анализ текста
-  var mon =     /(понедельник|пн.|\bпн\b)/.test(txt); // . - символ, $ - конец "слова" | - или
-  var tue =         /(вторник|вт.|\bвт\\b)/.test(txt);
-  var wed =     /(среда|среду|ср.|\bср\b)/.test(txt);
-  var thu =         /(четверг|чт.|\bчт\b)/.test(txt);
-  var fri = /(пятница|пятницу|пт.|\bпт\b)/.test(txt);
-  var sat = /(суббота|субботу|сб.|\bсб\b)/.test(txt);
-  var sun =     /(воскресенье|вс.|\bвс\b)/.test(txt);
+  var mon =     /(понедельник|пн.|пн)/.test(txt); // . - символ, $ - конец "слова" | - или
+  var tue =         /(вторник|\bвт.\b|\bвт\b)/.test(txt);
+  var wed =     /(среда|среду|ср.|ср)/.test(txt);
+  var thu =         /(четверг|чт.|чт)/.test(txt);
+  var fri = /(пятница|пятницу|пт.|пт)/.test(txt);
+  var sat = /(суббота|субботу|сб.|сб)/.test(txt);
+  var sun =     /(воскресенье|вс.|вс)/.test(txt);
   var day = /(день|сегодня)/.test(txt);
   var week = /(неделю)/.test(txt);
   var tomo = /(завтра)/.test(txt);
@@ -239,7 +239,7 @@ app.on('text', function(ctx) {
   var Q21 = /во сколько начинаются(?= уроки(?= | в)| предметы(?= | в)| занятия(?= | в))|когда начинаются(?= уроки(?= | в)| предметы(?= | в)| занятия(?= | в))/.test(txt);
   var Q22 = /во сколько заканчиваются(?= уроки(?= | в)| предметы(?= | в)| занятия(?= | в))|когда заканчиваются(?= уроки(?= | в)| предметы(?= | в)| занятия(?= | в))/.test(txt);
   //3. Сколько/какое количество предметов/уроков (в) [сегодня/день недели]?
-  var Q3 = /сколько (?= уроков(?= | в)| предметов(?= | в)| занятий(?= | в))|какое количество(?= уроков(?= | в)| предметов(?= | в)| занятий(?= | в))/.test(txt);
+  var Q3 = /сколько(?= уроков(?= | в)| предметов(?= | в)| занятий(?= | в))|какое количество(?= уроков(?= | в)| предметов(?= | в)| занятий(?= | в))/.test(txt);
   //4. Во сколько (начинаются/заканчиваются) (у меня) [предмет] (в) [сегодня/день недели]?
   //var Q41 = /во сколько|когда начинается (?= у меня)|(?= урок|предмет|занятие)/.test(txt);
   //var Q42 = /во сколько|когда заканчиваются (?= у меня)|(?= урок|предмет|занятие)/.test(txt);
